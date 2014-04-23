@@ -1,8 +1,8 @@
-## セクション1 {#section1}
+## <a name="section1"> セクション1
 
 なんたらかんたら。
 
-## セクション2 {#section1}
+## <a name="section2"> セクション2
 
 なんたらかんたら。
 
