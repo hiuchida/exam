@@ -1,4 +1,4 @@
-## <a name="#section1"> セクション1
+## <a href="#section1"> セクション1
 
 なんたらかんたら。
 
