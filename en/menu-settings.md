@@ -374,6 +374,7 @@ If you update user settings except the title and datatype=`hidden`, a notificati
 If you select [**delete**] from right-click menu of each menu, the dialog to delete menu is displayed.  
 If you click a [OK] button, the menu is deleted.
 
+<a name="set_admin"></a>
 ## 9 Setting Administrators to the Menu Tree
 
 If in edit mode or addition the menu tree, you can set super user of its menu tree in the administrator settings. Administrator settings are displayed only if editing the root menu.
