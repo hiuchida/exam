@@ -238,7 +238,7 @@ If you click "Maximize" icon in a Widget header, the maximized Composite RSS Rea
 
 ![Maximizing Composite RSS Reader Gadget]
 
-Depending on the setting, RSS item is displayed according to the registered categories or displayed all collectively. Other operations are same as "Maximize RSS Reader Gadget". Refer to User Guide / <a name="rss-reader-gadget.md#maximize">Maximizing RSS Reader Gadget</a> for the operations of maximizing Gadget.
+Depending on the setting, RSS item is displayed according to the registered categories or displayed all collectively. Other operations are same as "Maximize RSS Reader Gadget". Refer to User Guide / <a href="rss-reader-gadget.md#maximize">Maximizing RSS Reader Gadget</a> for the operations of maximizing Gadget.
 
 
 ## Switching of the Display According to Category and the Integration(According to Time Order) Display
