@@ -21,7 +21,7 @@ To use a gadget, register it in the repository database of infoScoop OpenSource,
 
 **Note:** If a gadget from outside of company's network is used, pay attention to unauthorized access from it to the other gadgets and infoScoop because the gadget is operated as a content within the same domain server that infoScoop is deployed.
 
-To solve this problem, the gadgets not registered in infoScoop must be operated in a different domain. For details, refer to [Proxy Settings].
+To solve this problem, the gadgets not registered in infoScoop must be operated in a different domain. For details, refer to <a href="properties-settings.md#9_2_gadgetProxyURL">9.2 gadgetProxyURL</a>.
 
 ### 2.2 About Widget
 
@@ -1402,4 +1402,3 @@ Double-byte character string is shown as it is.
 </table>
 
 
-[Proxy Settings]: properties-settings.md

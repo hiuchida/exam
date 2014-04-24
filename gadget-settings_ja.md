@@ -1540,4 +1540,3 @@ __iCalendar設定例__
 </table>
 
 
-[Proxy Settings]: properties-settings.md "プロキシ管理"
