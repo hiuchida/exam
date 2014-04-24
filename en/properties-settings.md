@@ -112,7 +112,7 @@ The operations above is repeated as many times as the number selected at ajaxReq
 
 ### 3.3 refreshInterval
 
-Interval of automatic refresh of each gadget. Refer to [Auto Update] for the detail of automatic updates.
+Interval of automatic refresh of each gadget. Refer to User Guide / [Auto Update] for the detail of automatic updates.
 
     The unit is specified as a numeric value in minutes.
     Default: 10 (minutes)
@@ -120,7 +120,7 @@ Interval of automatic refresh of each gadget. Refer to [Auto Update] for the det
 ### 3.4 widgetRefreshInterval
 
 Interval of automatic updates between gadgets. Update interval of gadget in one turn of automatic update is set.  
-Refer to [Auto Update] / "The Updating Interval in One Turn" for the detail.
+Refer to User Guide / <a href="auto-update.md#updateDurationInTurn">The Updating Interval in One Turn</a> for the detail.
 
     The unit is specified as a numeric value in seconds.
     Default: 20 (seconds)
@@ -282,7 +282,7 @@ The authentication type applied to register the login information typed in the s
 Authentication gadget mechanism does not work as invalid credential if the other value above is entered.  
 The new authentication information is registered at the next user log in if this property is changed during operation. In this case, the old credentials is demoted to normal authentication information or automatically removed if the credentials are not set to any gadget.
 
-**Note:** If **Intranet** check box in **Proxy** tab is enabled, this setting applied. Refer to [Proxy Settings] / "6. Intranet Settings" about **Intranet** check box setting.
+**Note:** If **Intranet** check box in **Proxy** tab is enabled, this setting applied. Refer to Administration Guide / <a href="proxy-settings.md#proxy_manage_intranet">6 Intranet Settings</a> about **Intranet** check box setting.
 
 ## 9 Properties for the System Settings
 

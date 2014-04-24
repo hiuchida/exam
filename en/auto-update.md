@@ -28,6 +28,7 @@ Next turn is started just after finishing the current turn.
 ![Start of the next turn]
 
 
+<a name="updateDurationInTurn"></a>
 ## The Updating Interval in One Turn
 
 The targeted Gadgets are updated one by one with 20 seconds interval when the turn of the auto update is started. The order of Gadgets update is not set.

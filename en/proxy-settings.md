@@ -191,6 +191,7 @@ In order to add a Cookie name, **Specify sending cookies** is chosen, and the [*
 If you select **Specify sending cookies** and clicking **Save** without cookie name, selecting the same **Not ending cookies** at the save.  
 Also, if you select **Send all headers**, **Send all cookies** is selected.
 
+<a name="proxy_manage_intranet"></a>
 ## 6 Intranet Settings
 
 This is a security setting. If you set to disable intranet, it performs the following security measures to target sites.
