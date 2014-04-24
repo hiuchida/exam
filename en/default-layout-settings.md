@@ -68,7 +68,7 @@ Explain the context menu of the Default Layout administration page.
     	<td><img src="../../images/database_refresh.gif"/></td>
     	<td>Initialization of customized information</td>
         <td>All the customization information of the user who specified is eliminated
-compulsorily.<br><br>See: 9 Initializing the Customization Information</td>
+compulsorily.<br><br>See: <a href="#initialize_customize">9 Initializing of Customized Information</a></td>
     </tr>
 	<tr>
     	<td><img src="../../images/apply_changes.gif"/></td>
@@ -87,8 +87,7 @@ compulsorily.<br><br>See: 9 Initializing the Customization Information</td>
 
 The composition of an initial display page can be changed according to a user's role information.  
 An default layout sets up to each role.  
-If it is not necessary to change an default layout using a role and you use the same default layout by all the users, open the edit display of `defaultRole`. For details, refer to 5 Constitution of a Command
-Bar.
+If it is not necessary to change an default layout using a role and you use the same default layout by all the users, open the edit display of `defaultRole`. For details, refer to <a href="#command_bar">5 The Constitution of Command Bar</a>.
 
 The followings are the composition of a role list, and explanation about theoperation method.
 
@@ -125,8 +124,7 @@ The following is explanation about a role setup.
     </tr>
 	<tr>
     	<td>Subject</td>
-        <td>The type of a roll is chosen.<br>A subject is mapped by the value of a HTTP header by setup. How to set, refer to <a href="../installation-guide/customizing-web-application-module#http-header">Installation Guide / Define HTTP Header as The Role
-Information</a>.</td>
+        <td>The type of a roll is chosen.<br>A subject is mapped by the value of a HTTP header by setup. How to set, refer to Installation Guide / <a href="customizing-web-application-module.md#http-header">5 Define the HTTP header as role information</a>.</td>
     </tr>
 	<tr>
     	<td>Regular expression</td>
@@ -145,7 +143,8 @@ A default roll `defaultRole` can be repealed and only the user who matched the r
 This setup is effective except a commandbar and tab0 (home tab).  
 `defaultRole` can be repealed by validating the **Do not use default** check box currently displayed on the right-hand side of the `Add` button.
 
-## 5 The Constitution of Command Bar
+<a name="command_bar"></a>
+## 5 The Constitution of Command Bar
 
 The setting method of Command Bar fixed area is explained.  
 Fixed area settings are as follows.
@@ -171,7 +170,7 @@ Each component has the following options.
   * **Edit**: An edit icon is displayed only with Ticker, Ranking, added link or added html. Those components need to be set up.
     * Ticker: Electrical scoreboard like gadget. Click to edit RSS feed URL to be displayed on Ticker.
     * Ranking: Click to edit the URL list (XML format) to be displayed in Ranking. Refer to the following table for the setting items.
-    * Link and HTML: Refer to 5.2 Add a Link, Add a HTML.
+    * Link and HTML: Refer to <a href="#5_2_add_link_html">5.2 Add a Link, Add a HTML</a>.
   * **Delete**: A delete icon is displayed only with added link and added HTML. Clikc to delete added link and HTML.
 
 <table>
@@ -261,6 +260,7 @@ is generated.<br>The maximum value is 30.</td>
     </tbody>
 </table>
 
+<a name="5_2_add_link_html"></a>
 ### 5.2 Add a Link, Add a HTML
 
 - Add a link  
@@ -325,15 +325,18 @@ The settings are as follows.
 
 Multiple fixed tabs can be configured.
 
+<a name="tab_add"></a>
 ### 6.1 Adding Tab
 
 Click ![Add icon] **Add Tab** button to add a tab.
 
+<a name="tab_delete"></a>
 ### 6.2 Deleting Tab
 
 Click **[X]** icon on each tab to delete the tab.  
 A configuration dialog is shown, and then click **OK**.
 
+<a name="tab_layout"></a>
 ## 7 Tab Configuration
 
 There are tab name, fixed area, and initial settings of personalized area for each tab settings.  
@@ -511,11 +514,11 @@ The configuration is applied by each locations according to the rules as follows
 
 #### 8.2.1 Changing Command Bar Configuration
 
-The command bar of user's page is reload and overwritten if a user reloads the browser after changing the configuration of tabs according to 5 The Constitution of Command Bar.
+The command bar of user's page is reload and overwritten if a user reloads the browser after changing the configuration of tabs according to <a href="#command_bar">5 The Constitution of Command Bar</a>.
 
 **8.2.2 Adding Tab**
 
-The added fixed tab is shown between the fixed tabs and the dynamic tabs (the tabs user added) after a user is reload the browser if a fixed tab is added according to the steps of 6.1 Adding Tab.
+The added fixed tab is shown between the fixed tabs and the dynamic tabs (the tabs user added) after a user is reload the browser if a fixed tab is added according to the steps of <a href="#tab_add">6.1 Adding Tab</a>.
 
 e.g. The tab configuration of user page is as follows.
     
@@ -527,7 +530,7 @@ The tab configuration is automatically changed as follows after the browser is r
 
 #### 8.2.3 Deleting Tab
 
-The fixed tab is not deleted, but it is changed a dynamic tab (a tab user added) without the fixed area if a fixed tab is deleted according to the steps of 6.2 Deleting Tab. In addition, the tab changed to a dynamic tab is moved to the right edge.  
+The fixed tab is not deleted, but it is changed a dynamic tab (a tab user added) without the fixed area if a fixed tab is deleted according to the steps of <a href="#tab_delete">6.2 Deleting Tab</a>. In addition, the tab changed to a dynamic tab is moved to the right edge.  
 e.g. The tab configuration of user page is as follows.
 
     
@@ -540,7 +543,7 @@ The tab configuration is automatically changed as follows after the browser is r
 #### 8.2.3 Changing Tab Configuration
 
 The tab configuration is applied according to the following rules if a user reloads the browser after the tab configuration is changed according to the
-steps of 7 Tab Configuration.
+steps of <a href="#tab_layout">7 Tab Configuration</a>.
 
   * In case the fixed area layout is changed:  
 All the fixed area of the user screen is overwritten by the administrator settings. The user settings of the updated gadget is turned back to the defaults.
@@ -549,7 +552,8 @@ Only the gadget that the setting is changed is overwritten by the administrator 
   * In case the gadget settings of the personalized area is changed:  
 The gadget location information of the personalized area is only active at the first log in, and it is not applied if infoScoop OpenSource is reloaded.
 
-## 9 Initializing of Customized Information
+<a name="initialize_customize"></a>
+## 9 Initializing of Customized Information
 
 Initialization of the customized information for the user specified customization information (gadget was installed by the user, the tab has been added, the whole set) by removing the page to configure the settings by setting the default layout.
 
