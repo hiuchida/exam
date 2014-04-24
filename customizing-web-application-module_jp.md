@@ -91,12 +91,11 @@ remakewar.bat(sh)は実行にApache Antが必要になります。Apache Antが�
     <li>/infoscoop/build.propertiesを上書き保存します。</li>
 </ol>
 
-
 <a name="without_sso"></a>
 ## 3 認証設定1 SSO環境を利用しない
 
 SSO環境がない場合は、infoScoop OpenSourceが用意するデフォルトのログイン画面を利用します。  
-SSO環境がある場合は、次節「<a href="#set_sso_filter">4 認証設定2 SSO製品と連携する</a>」に進んでください。
+SSO環境がある場合は、次節 <a href="#set_sso_filter">4 認証設定2 SSO製品と連携する</a>に進んでください。
 
 
 ### 3.1 デフォルトのログイン画面による認証を有効にする
@@ -417,7 +416,7 @@ SSO環境がある場合は、次節「<a href="#set_sso_filter">4 認証設定2
 ## 4 認証設定2 SSO製品と連携する
 
 ユーザー認証を、導入済みのシングルサインオン(以下SSO)製品と連携するためには、以下の設定をします。  
-前節「<a href="#without_sso">3 認証設定1 SSO環境を利用しない</a>」の設定を行った場合、この節で行う設定は必要ありません。
+前節 <a href="#without_sso">3 認証設定1 SSO環境を利用しない</a>の設定を行った場合、この節で行う設定は必要ありません。
 
 通常、SSO製品は連携用のモジュールをサーブレットフィルタとして提供しています。以下の設定を行うことで、SSO用のサーブレットフィルタをinfoScoop OpenSourceに適用することができます。
 
