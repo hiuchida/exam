@@ -368,8 +368,8 @@ This line is only separated by a single newline, so it's a separate line in the 
 
 (Technical note: *Markdown Here* uses GFM line breaks, so there's no need to use MD's two-space line breaks.)
 
-<a name="videos"/>
-## Youtube videos
+
+## <a name="videos"/> Youtube videos
 
 They can't be added directly but you can add an image with a link to the video like this:
 
