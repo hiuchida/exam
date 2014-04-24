@@ -54,6 +54,7 @@ The following case occurs an error.
 
 ## 3 Operations of I18N Message Administration
 
+<a name='add-delete-locale'></a>
 ### 3.1 Add / Remove Locale
 
 Add locale window appears if the **Add locale** is clicked.  
@@ -81,6 +82,7 @@ Locale settings are as the followings.
 Locale is added by clicking [**Add**] button.  
 Locale is removed by clicking ![Trash icon] icon of each row.
 
+<a name='import-export-locale'></a>
 ### 3.2 Import / Export Locale
 
 I18N message import dialog is displayed by clicking **Import**.  
@@ -145,11 +147,11 @@ In addition, the character set of uploading iCalandar file needs to be encoded i
 
 ### 6.2 Add / Remove Holiday Settings
 
-To add / remove holiday locale settings, refer to 3.1. Add / Remove Locale and do the same procedure.
+To add / remove holiday locale settings, refer to <a href="#add-delete-locale">3.1 Add / Remove Locale</a> and do the same procedure.
 
 ### 6.3 Import / Export Holiday Settings
 
-To import / export holiday setting, refer to 3.2. Import / Export locale and do the same procedure.
+To import / export holiday setting, refer to <a href="#import-export-locale">3.2 Import / Export Locale</a> and do the same procedure.
 
 
 [Menu Settings]: menu-settings.md
