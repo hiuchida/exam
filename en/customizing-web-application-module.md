@@ -445,6 +445,7 @@ _build.properties Settings_
 **Note:**  
 Please ask in the user forum, when it is necessary to cooperate with SSO product by methods other than the above-mentioned explanation.
 
+<a name="http-header"></a>
 ## 5 Define the HTTP header as role information
 
 infoScoop OpenSouce has the feature to switch the Menu, the Default Layout's composition according to the user's role(affiliation information).  

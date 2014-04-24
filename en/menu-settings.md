@@ -52,7 +52,7 @@ This section explains the context menu of the Menu administration page.
 	<tr>
     	<td><img src="../../images/add_menu_tree.gif"/></td>
         <td>Add menu tree</td>
-        <td>A new menu tree is added.<br>A dialog for Menu settings is displayed by clicking this.<br>This icon is only available if the tree in add mode or move mode.<br>About for each settings, refer to "7 Adding and Changing Menu Items".</td>
+        <td>A new menu tree is added.<br>A dialog for Menu settings is displayed by clicking this.<br>This icon is only available if the tree in add mode or move mode.<br>About for each settings, refer to <a href="#menu_item_add_change">7 Adding and Changing Menu Items</a>.</td>
     </tr>
 	<tr>
     	<td><img src="../../images/refresh.gif"/></td>
@@ -148,6 +148,7 @@ If in the menu tree addition / order change mode, you can do this operation.
 If you click the `Do menu tree addition/order change.`, you can move the menu tree. A menu is moved where a dotted horizontal line appears by releasing the left-click.  
 Additional moves of the menu tree cannot be made.
 
+<a name="menu_item_add_change"></a>
 ## 7 Adding and Changing Menu Items
 
 A dialog for menu settings is displayed if [**Add**] is selected from the right-click menu of each menu in edit mode.  
@@ -347,7 +348,7 @@ You can set show or hide according to the role information of the login user suc
   * Private (Unchecking the public settings): Publishing the menu for only authorized users.
 
 Each subject are mapped to HTTP header value by settings.  
-Refer to [Customizing Web Application Module] / "5 Define the HTTP header as role information" about how to set.  
+Refer to Installation Guide / <a href="customizing-web-application-module.md#http-header">5 Define the HTTP header as role information</a> about how to set.  
 Type regular expressions in the access control. Regular expressions judge the subject against its header value. If it is true, allows reference.  
 If you specify more than one access control, it is judged as the sum operation of all.
 
@@ -380,6 +381,7 @@ If in edit mode or addition the menu tree, you can set super user of its menu tr
   * User IDs with the authority `Menu Tree` is displayed in the combo box.
   * Administrator of the menu tree can refer and edit only the menus assigned as an administrator.
 
+<a name="specify_external_service"></a>
 ## 10 Specify the External Services
 
 An external service can be used as a part of the Menu of this product.  
@@ -523,4 +525,3 @@ The following is a sample.
 
 
 [Properties Settings]: properties-settings.md
-[Customizing Web Application Module]: ../installation-guide/customizing-web-application-module.md
