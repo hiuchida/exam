@@ -894,7 +894,7 @@ information</b> button.</td>
             	<li><b>postPortalCredential</b>: Specify for posting the user ID and the password of logged in user when RSS is loaded. A text box for specifying the parameter name of user id which is included in POST data is shown if postPortalCredential is selected. The parameter name of user id is "is-user" if the parameter name is not specified.</li>
             	<li><b>sendPortalCredentialHeader</b>: Specify for sending the header including the user id of the user logged in.<br>A text box for specifying the header name that sends user id is shown if sendPortalCredentialHeader is selected. The header name of user id is "is-user" if the header name is not specified.</li>
             </ul>
-<b>Note:</b> Headers other than INNA registered header (RFCA4229) are not sent with normal proxy settings. Modification of proxy settings is also required to match with the header name specified. Refer to <a href="../proxy-settings">Send HTTP Header settings</a> for details.<br><br>An authentication information register form is shown if a gadget is dropped with "basic", "ntlm", or "postCredential" specified.</td>
+<b>Note:</b> Headers other than INNA registered header (RFCA4229) are not sent with normal proxy settings. Modification of proxy settings is also required to match with the header name specified. Refer to <a href="../proxy-settings.md">Send HTTP Header settings</a> for details.<br><br>An authentication information register form is shown if a gadget is dropped with "basic", "ntlm", or "postCredential" specified.</td>
     </tr>
     </tbody>
 </table>
