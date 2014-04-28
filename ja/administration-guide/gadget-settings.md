@@ -600,7 +600,7 @@ __iCalendar設定例__
             <td>アクセス履歴を利用する</td>
             <td>
                 アクセス履歴アイコンを表示するかどうかを指定します。<br>
-                本設定の有効/無効に関わらずアクセス履歴用のログはデータベースに保存されます(参照: 「<a href="properties-settings.md" title="プロパティ管理">プロパティ管理</a>/6.1 accessLogEntry」)。
+                本設定の有効/無効に関わらずアクセス履歴用のログはデータベースに保存されます(参照：プロパティ管理／<a href="properties-settings.md#6_1_accessLogEntry" title="プロパティ管理／6.1 accessLogEntry">6.1 accessLogEntry</a>)。
             </td>
         </tr>
     </tbody>
@@ -871,7 +871,7 @@ __iCalendar設定例__
                         署名付きリクエストに対応するためには、呼び出し先Webサービスでの対応が必要となります。
                     </li>
                 </ul>
-                <strong>注意</strong> 通常のプロキシ設定では、INNA登録済みヘッダ(RFC4229)ではないヘッダは送信されません。指定したヘッダ名に合わせてプロキシ設定も変更する必要があります。詳しくは<a href="proxy-settings.md" title="プロキシ管理">プロキシ管理</a>「5 HTTPヘッダ送信設定」を参照してください。<br>
+                <strong>注意</strong> 通常のプロキシ設定では、INNA登録済みヘッダ(RFC4229)ではないヘッダは送信されません。指定したヘッダ名に合わせてプロキシ設定も変更する必要があります。詳しくはプロキシ管理／<a href="proxy-settings.md#5_http_headers_transmission_settings">5 HTTPヘッダ送信設定</a>を参照してください。<br>
                 Basic、ntlmまたはpostCredentialを指定した場合は、ガジェットをドロップした際、認証情報登録フォームが表示されます。
             </td>
         </tr>
@@ -1008,7 +1008,7 @@ __iCalendar設定例__
             <td>アクセス履歴を利用する</td>
             <td>
                 アクセス履歴アイコンを表示するかどうかを指定します。<br>
-                本設定の有効/無効に関わらずアクセス履歴用のログはデータベースに保存されます(参照：<a href="properties-settings.md" title="プロパティ管理">プロパティ管理</a>「6.1 accessLogEntry」)。
+                本設定の有効/無効に関わらずアクセス履歴用のログはデータベースに保存されます（参照：プロパティ管理／<a href="properties-settings.md#6_1_accessLogEntry" title="プロパティ管理／6.1 accessLogEntry">6.1 accessLogEntry</a>）。
             </td>
         </tr>
     </tbody>
