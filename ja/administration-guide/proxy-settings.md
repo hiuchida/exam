@@ -140,6 +140,7 @@ Ajaxプロキシは、受信したリクエストのURLを別のURLに置換す�
 
 ![Substitution of the Request URL]
 
+<a name="5_http_headers_transmission_settings"></a>
 ## 5 HTTPヘッダ送信設定
 
 Ajaxプロキシは、ブラウザから受け付けたリクエストに含まれるHTTPヘッダを、対象のURLに対するリクエストに全て含めるか、指定したHTTPヘッダのみ含めるかを設定することができます。  

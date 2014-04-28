@@ -150,6 +150,7 @@ For the above table setting, `http://hostA/rss.xml` replaces
 
 ![Substitution of the Request URL]
 
+<a name="5_http_headers_transmission_settings"></a>
 ## 5 HTTP Headers Transmission Settings
 
 You can choose the following two options of the HTTP headers contain in the received request from the web browser to Ajax proxy.

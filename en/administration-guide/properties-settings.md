@@ -198,6 +198,7 @@ Customized information is also saved if the browser is closed or moved to anothe
 This product has a mechanism to store certain user actions to a repository database such as searching and clicking the link.  
 This information is used in Ranking gadget and access statistics.
 
+<a name="6_1_accessLogEntry"></a>
 ### 6.1 accessLogEntry
 
 Specify whether to store the access log of the gadgets dealing with RSS such as Information and RSS Reader gadget.
