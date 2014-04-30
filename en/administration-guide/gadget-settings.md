@@ -401,7 +401,7 @@ The gadget setting items are as follows.
     </tr>
 	<tr>
     	<td>Date format</td>
-        <td>Specify a format to show the date of RSS items.<br>Refer to <a href="#date-format">Date format can be used</a> for details.
+        <td>Specify a format to show the date of RSS items.<br>Refer to <a href="#date-format">7.2 Date format can be used</a> for details.
 </td>
     </tr>
 	<tr>
