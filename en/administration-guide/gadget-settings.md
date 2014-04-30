@@ -401,7 +401,7 @@ The gadget setting items are as follows.
     </tr>
 	<tr>
     	<td>Date format</td>
-        <td>Specify a format to show the date of RSS items.<br>Refer to <a href="#date-format">7.2 Date format can be used</a> for details.
+        <td>Specify a format to show the date of RSS items.<br>Refer to <a href="#date-format">7.2 Date Format can be used</a> for details.
 </td>
     </tr>
 	<tr>
@@ -459,7 +459,7 @@ User setting items are as follows.
     	<td>Contents display mode</td>
         <td>Specify the target of RSS item link.<br>
         	<ul>
-            	<li><b>Auto detect</b>: <b>Frame in portal</b> or <b>New window</b> is applied according to displayInlinHost property settings. Refer to <a href="#displayInlineHost">Property displayInlineHost</a> for details.</li>
+            	<li><b>Auto detect</b>: <b>Frame in portal</b> or <b>New window</b> is applied according to displayInlinHost property settings. Refer to <a href="#displayInlineHost">7.1 Property displayInlineHost</a> for details.</li>
             	<li><b>Frame in portal</b>: Linked sites are displayed in the inner frame in portal.</li>
             	<li><b>New window</b>: Linked sites are displayed in another window.</li>
             </ul>
@@ -533,7 +533,7 @@ The gadget setting items are as follows.
     </tr>
     <tr>
     	<td>Date format</td>
-        <td>Specify a format to show the date of RSS items.<br>Refer to <a href="#date-format">Date format can be used</a> for details.</td>
+        <td>Specify a format to show the date of RSS items.<br>Refer to <a href="#date-format">7.2 Date Format can be used</a> for details.</td>
     </tr>
    	<tr>
     	<td>Use Access Stat</td>
@@ -582,7 +582,7 @@ The user setting items are as follows.
     	<td>Contents display mode</td>
         <td>Specify the target of RSS item link.<br>
         	<ul>
-            	<li><b>Auto detect</b>: Frame in portal or New window is applied according to displayInlinHost property settings. Refer to <a href="#displayInlineHost">Property displayInlineHost</a> for details.</li>
+            	<li><b>Auto detect</b>: Frame in portal or New window is applied according to displayInlinHost property settings. Refer to <a href="#displayInlineHost">7.1 Property displayInlineHost</a> for details.</li>
             	<li><b>Frame in portal</b>: Linked sites are displayed in the inner frame in portal.</li>
             	<li><b>New window</b>: Linked sites are displayed in another window.</li>
             </ul>
@@ -651,7 +651,7 @@ The user setting items are as follows.
     	<td>Header link display</td>
         <td>Specify the target of the links within the web page.<br>
         	<ul>
-            	<li><b>Auto detect</b>: Frame in portal or New window is applied according to displayInlinHost property settings. Refer to <a href="#displayInlineHost">Property displayInlineHost</a></li>
+            	<li><b>Auto detect</b>: Frame in portal or New window is applied according to displayInlinHost property settings. Refer to <a href="#displayInlineHost">7.1 Property displayInlineHost</a></li>
             	<li><b>Frame in portal</b>: Linked sites are displayed in the inner frame in portal.</li>
             	<li><b>New window</b>: Linked sites are displayed in another window.</li>
             </ul>
@@ -858,7 +858,7 @@ The gadget setting items are as follows.
     </tr>
 	<tr>
     	<td>Date format</td>
-        <td>Specify a format to show the date of RSS items.<br>Refer to <a href="#date-format">Date format can be used</a> for details.</td>
+        <td>Specify a format to show the date of RSS items.<br>Refer to <a href="#date-format">7.2 Date Format can be used</a> for details.</td>
     </tr>
 	<tr>
     	<td>Use Access Stat</td>
@@ -1215,14 +1215,16 @@ The user setting items are as follows.
 
 ## 7 Supplements
 
-### <a name="displayInlineHost"> 7.1 Property displayInlineHost
+<a name="displayInlineHost"></a>
+### 7.1 Property displayInlineHost
 
 This is the property to configure the operation when `Auto detect` is specified in content display mode.  
 In content display mode, `Frame in portal` is applied if the URL of the link includes one of the host names from "displayInlineHost" property, otherwise `New window` is applied.  
 For example, specify `aaa` and `bbb` to displayInlineHost to show the website whose host name is `aaa` or `bbb` in Frame in portal even if overall setting is `New window`.  
 In this case, the web page like `http://aaa/hoge.html` is shown in Frame in portal, and the web page like `http://ccc/foo.html` is shown in a new window.
 
-### <a name="date-format"> 7.2 Date Format can be used
+<a name="date-format"></a>
+### 7.2 Date Format can be used
 
 The date format that can be used for each gadgets is the date format of SimpleDateFormat class of Java SE 6.  
 The following pattern letters are defined (all other characters from 'A' to 'Z' and from 'a' to 'z' are reserved).
