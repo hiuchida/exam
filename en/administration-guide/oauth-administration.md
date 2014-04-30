@@ -210,7 +210,7 @@ are the following tables.
     </tr>
 	<tr>
     	<td>Public key</td>
-        <td>The RSA public key of PEM form is specified.<br>Public key is acquirable from the following URL.<br>[http://localhost:8080/infoscoop/opensocial/certificates/public.cer](http://localhost:8080/infoscoop/opensocial/certificates/public.cer)<br>Pass a public key to the service provider corresponding to Signed Request or OAuth.</td>
+        <td>The RSA public key of PEM form is specified.<br>Public key is acquirable from the following URL.<br>http://localhost:8080/infoscoop/opensocial/certificates/public.cer<br>Pass a public key to the service provider corresponding to Signed Request or OAuth.</td>
     </tr>
     </tbody>
 </table>

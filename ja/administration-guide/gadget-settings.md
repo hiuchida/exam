@@ -1052,7 +1052,7 @@ __iCalendar設定例__
                         sendPortalCredentailHeaderを選択すると、ユーザーIDを送信するヘッダ名を指定するテキストボックスが表示されます。パラメータ名を指定しない場合に、送信されるユーザーIDのヘッダ名は「is-user」です。
                     </li>
                 </ul>
-                <strong>注意</strong> 通常のプロキシ設定では、INNA登録済みヘッダ(RFC4229)ではないヘッダは送信されません。指定したヘッダ名に合わせてプロキシ設定も変更する必要があります。詳しくは<a href="proxy-settings" title="プロキシ管理">プロキシ管理</a>「5 HTTPヘッダ送信設定」を参照してください。<br>
+                <strong>注意</strong> 通常のプロキシ設定では、INNA登録済みヘッダ(RFC4229)ではないヘッダは送信されません。指定したヘッダ名に合わせてプロキシ設定も変更する必要があります。詳しくはプロキシ管理／<a href="proxy-settings.md#5_http_headers_transmission_settings" title="プロキシ管理／5 HTTPヘッダ送信設定">5 HTTPヘッダ送信設定</a>を参照してください。<br>
                 Basic、ntlmまたはpostCredentialを指定した場合は、ガジェットをドロップした際、認証情報登録フォームが表示されます。
             </td>
         </tr>
