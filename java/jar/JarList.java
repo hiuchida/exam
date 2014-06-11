@@ -9,5 +9,6 @@ public class JarList {
             JarEntry je = e.nextElement();
             System.out.println("" + je.getName());
         }
+        jf.close();
     }
 }
