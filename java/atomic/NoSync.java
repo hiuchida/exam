@@ -1,3 +1,5 @@
+package atomic;
+
 public class NoSync {
     public static void main(String[] args) {
         int val = 0;

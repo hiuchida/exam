@@ -1,3 +1,5 @@
+package atomic2;
+
 public class NoSync {
     static int val = 0;
     public static void main(String[] args) throws Exception {

@@ -1,4 +1,7 @@
-import java.util.*;
+package map;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 class LinkedHashMap5 extends LinkedHashMap {
     protected boolean removeEldestEntry(Map.Entry eldest) {

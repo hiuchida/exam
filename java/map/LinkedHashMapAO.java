@@ -1,4 +1,7 @@
-import java.util.*;
+package map;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class LinkedHashMapAO extends LinkedHashMap {
     public static void main(String[] args) {

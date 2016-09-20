@@ -1,5 +1,10 @@
-import java.lang.ref.*;
-import java.util.*;
+package weak2;
+
+import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 public class MapTest {
     public static void main(String[] args) {

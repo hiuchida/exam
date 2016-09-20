@@ -1,5 +1,7 @@
-import java.lang.ref.*;
-import java.util.*;
+package soft;
+
+import java.lang.ref.SoftReference;
+import java.util.Map;
 
 public class MapTest2 {
     static final String VALUE;

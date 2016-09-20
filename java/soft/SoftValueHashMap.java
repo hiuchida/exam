@@ -1,5 +1,14 @@
-import java.lang.ref.*;
-import java.util.*;
+package soft;
+
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 public class SoftValueHashMap<K,V> implements Map<K,V> {
     private HashMap<K,SoftReference<V>> map = new HashMap<K,SoftReference<V>>();

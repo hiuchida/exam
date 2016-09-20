@@ -1,4 +1,8 @@
-import java.util.*;
+package weak;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 public class MapTest {
     public static void main(String[] args) {

@@ -1,4 +1,6 @@
-import java.io.*;
+package string_array;
+
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {

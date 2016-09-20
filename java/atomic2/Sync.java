@@ -1,3 +1,5 @@
+package atomic2;
+
 public class Sync {
     static int val = 0;
     static Object sync = new Object();

@@ -1,4 +1,7 @@
-import java.util.*;
+package map;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class LinkedHashMapLRU5 extends LinkedHashMap {
     public LinkedHashMapLRU5() { super(); }

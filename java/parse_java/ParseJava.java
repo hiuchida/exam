@@ -1,4 +1,8 @@
-import java.io.*;
+package parse_java;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class ParseJava {
     public static void main(String[] args) {

@@ -1,5 +1,14 @@
-import java.io.*;
-import java.util.*;
+package string_array;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class StringArray extends ArrayList<String> {
     static final String UTF8 = "UTF-8";

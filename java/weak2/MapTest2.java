@@ -1,5 +1,8 @@
-import java.lang.ref.*;
-import java.util.*;
+package weak2;
+
+import java.lang.ref.SoftReference;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MapTest2 {
     static final String VALUE;

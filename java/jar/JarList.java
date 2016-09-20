@@ -1,6 +1,9 @@
-import java.io.*;
-import java.util.*;
-import java.util.jar.*;
+package jar;
+
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 public class JarList {
     public static void main(String[] args) throws IOException {

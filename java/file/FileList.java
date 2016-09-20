@@ -1,4 +1,6 @@
-import java.io.*;
+package file;
+
+import java.io.File;
 
 public class FileList {
     public static void main(String[] args) {

@@ -1,4 +1,7 @@
-import java.util.*;
+package hprof;
+
+import java.util.ArrayList;
+import java.util.List;
 
 class MyClass {
     byte a;

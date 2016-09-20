@@ -1,4 +1,6 @@
-import java.util.concurrent.atomic.*;
+package atomic2;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     static int noSyncVal = 0;
