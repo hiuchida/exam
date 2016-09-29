@@ -3,6 +3,7 @@ package csv_converter;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,31 +15,32 @@ public class MakeNetworktestcsv {
 	}
 	
 	static void make50000net() throws IOException {
+		DecimalFormat df = new DecimalFormat("00000");
 		BufferedWriter bw = new BufferedWriter(new FileWriter("networktest.csv"));
 		bw.write("NN,C,BSPSTA,20080702,E,,,A,,6,0000,,,,,0,,0000, ,0000,0000,0,3");
 		bw.newLine();
-		int off = 10000;
+		int off = 0;
 		List<String> list = new ArrayList<String>();
-		for (int j=0; j<200; j++) {
+		for (int j=0; j<1; j++) {
 			String prev = "BSPSTA";
-			for (int i=0; i<250; i++) {
+			for (int i=0; i<5000; i++) {
 				off++;
-				bw.write("NN,C,NT" + off + ",20080702,E,,,A,,6,0000,,,,,0,,0000, ,0000,0000,0,3," + prev + ", ");
+				bw.write("NN,C,NT" + df.format(off) + ",20080702,E,,,A,,6,0000,,,,,0,,0000, ,0000,0000,0,3," + prev + ", ");
 				bw.newLine();
-				prev = "NT" + off;
+				prev = "NT" + df.format(off);
 			}
 			list.add(prev);
 		}
-		bw.write("NN,C,BSPEND,20080702,E,,,A,,6,0000,,,,,0,,0000, ,0000,0000,0,3");
+		//bw.write("NN,C,BSPEND,20080702,E,,,A,,6,0000,,,,,0,,0000, ,0000,0000,0,3");
 		bw.newLine();
 		
 		bw.write("NJ,C,BSPSTA,20080702,10,BSPSTA01,,J,1,,,,N,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
 		bw.newLine();
-		for (int i=10001; i<=off; i++) {
-			bw.write("NJ,C,NT" + i + ",20080702,10,BSPSTA01,,J,1,,,,N,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+		for (int i=1; i<=off; i++) {
+			bw.write("NJ,C,NT" + df.format(i) + ",20080702,10,BSPSTA01,,J,1,,,,N,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
 			bw.newLine();
 		}
-		bw.write("NJ,C,BSPEND,20080702,10,BSPSTA01,,J,1,,,,N,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+		//bw.write("NJ,C,BSPEND,20080702,10,BSPSTA01,,J,1,,,,N,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
 		bw.newLine();
 		bw.close();
 	}
