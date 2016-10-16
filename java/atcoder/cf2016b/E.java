@@ -3,15 +3,21 @@ package atcoder.cf2016b;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class E {
-	
-	static String[] strs;
+	static boolean bElapsed = false;
+	List<String> list = new ArrayList<>();
+	Set<String> set = new HashSet<>();
+	Map<String,String> map = new HashMap<>();
 
-	public static void main(String[] args) throws Exception {
-		long start = System.currentTimeMillis();
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	String[] strs;
+
+	void solve(BufferedReader br) throws Exception {
 		String line = br.readLine();
 		int n = Integer.parseInt(line);
 		strs = new String[n];
@@ -27,11 +33,9 @@ public class E {
 			int k = Integer.parseInt(flds[0]);
 			sort(flds[1], k-1);
 		}
-		long end = System.currentTimeMillis();
-		//System.out.println((end-start) + "ms");
 	}
-	
-	static void sort(String line, int no) {
+
+	void sort(String line, int no) {
 		int[] order = new int[26];
 		for (int i=0; i<line.length(); i++) {
 			char ch = line.charAt(i);
@@ -70,7 +74,34 @@ public class E {
 				break;
 			}
 		}
-		System.out.println(small + 1);
+		pln(small + 1);
 	}
 
+	void p(char c) {
+		System.out.print(c);
+	}
+	void pln(char c) {
+		System.out.println(c);
+	}
+	void p(long l) {
+		System.out.print(l);
+	}
+	void pln(long l) {
+		System.out.println(l);
+	}
+	void p(String s) {
+		System.out.print(s);
+	}
+	void pln(String s) {
+		System.out.println(s);
+	}
+	public static void main(String[] args) throws Exception {
+		long start = System.currentTimeMillis();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		new E().solve(br);
+		long end = System.currentTimeMillis();
+		if (bElapsed) {
+			System.out.println((end-start) + "ms");
+		}
+	}
 }
