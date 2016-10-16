@@ -3,15 +3,21 @@ package atcoder.kupc2016;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class C {
+	static boolean bElapsed = false;
+	List<String> list = new ArrayList<>();
+	Set<String> set = new HashSet<>();
+	Map<String,String> map = new HashMap<>();
 
-	static int max = 0;
+	int max = 0;
 	
-	public static void main(String[] args) throws Exception {
-		long start = System.currentTimeMillis();
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	void solve(BufferedReader br) throws Exception {
 		String line = br.readLine();
 		int t = Integer.parseInt(line);
 		for (int i=0; i<t; i++) {
@@ -21,19 +27,17 @@ public class C {
 			int d = Integer.parseInt(flds[1]);
 			calc(n, d);
 		}
-		long end = System.currentTimeMillis();
-		System.out.println((end-start) + "ms");
 	}
 
-	static void calc(int n, int d) {
+	void calc(int n, int d) {
 		max = 0;
 		List<Integer> list = new ArrayList<>();
 		list.add(d);
 		calc(list, n);
-		System.out.println(max);
+		pln(max);
 	}
 	
-	static void calc(List<Integer> list, int n) {
+	void calc(List<Integer> list, int n) {
 		if (list.size() == n) {
 			int sum = 0;
 			for (Integer i : list) {
@@ -56,4 +60,31 @@ public class C {
 		}
 	}
 	
+	void p(char c) {
+		System.out.print(c);
+	}
+	void pln(char c) {
+		System.out.println(c);
+	}
+	void p(long l) {
+		System.out.print(l);
+	}
+	void pln(long l) {
+		System.out.println(l);
+	}
+	void p(String s) {
+		System.out.print(s);
+	}
+	void pln(String s) {
+		System.out.println(s);
+	}
+	public static void main(String[] args) throws Exception {
+		long start = System.currentTimeMillis();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		new C().solve(br);
+		long end = System.currentTimeMillis();
+		if (bElapsed) {
+			System.out.println((end-start) + "ms");
+		}
+	}
 }

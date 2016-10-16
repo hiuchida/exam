@@ -3,16 +3,23 @@ package atcoder.kupc2016;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class E {
+	static boolean bElapsed = false;
+	List<Point> list = new ArrayList<>();
+	Set<String> set = new HashSet<>();
+	//Map<String,String> map = new HashMap<>();
 
-	static int h;
-	static int w;
-	static byte[][] map;
-	static List<Point> list = new ArrayList<>();
+	int h;
+	int w;
+	byte[][] map;
 	
-	static class Point {
+	class Point {
 		int x;
 		int y;
 		
@@ -22,9 +29,8 @@ public class E {
 		}
 	}
 	
-	public static void main(String[] args) throws Exception {
-		long start = System.currentTimeMillis();
-		initMap();
+	void solve(BufferedReader br) throws Exception {
+		initMap(br);
 		if (checkEdge()) {
 			System.out.println("-1");
 			return;
@@ -34,12 +40,9 @@ public class E {
 		checkInner();
 		int cnt = count();
 		System.out.println(cnt);
-		long end = System.currentTimeMillis();
-		//System.out.println((end-start) + "ms");
 	}
-	
-	static void initMap() throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+	void initMap(BufferedReader br) throws Exception {
 		String line = br.readLine();
 		String[] flds = line.split(" ");
 		h = Integer.parseInt(flds[0]);
@@ -56,7 +59,7 @@ public class E {
 		}
 	}
 	
-	static boolean checkEdge() {
+	boolean checkEdge() {
 		for (int x=0; x<w; x++) {
 			if (map[0][x] > 0) {
 				return true;
@@ -76,7 +79,7 @@ public class E {
 		return false;
 	}
 	
-	static void fill() {
+	void fill() {
 		for (int y=1; y<h-1; y++) {
 			for (int x=1; x<w-1; x++) {
 				if (map[y][x] == 1) {
@@ -89,13 +92,13 @@ public class E {
 		}
 	}
 	
-	static void fill(int x, int y) {
+	void fill(int x, int y) {
 		if (map[y][x] == 0) {
 			map[y][x] = 2;
 		}
 	}
 	
-	static void fillEdge() {
+	void fillEdge() {
 		for (int x=0; x<w; x++) {
 			addList(x, 0);
 			addList(x, h-1);
@@ -117,7 +120,7 @@ public class E {
 		}
 	}
 	
-	static void addList(int x, int y) {
+	void addList(int x, int y) {
 		if (x < 0 || x >= w || y < 0 || y >= h) {
 			return;
 		}
@@ -126,7 +129,7 @@ public class E {
 		}		
 	}
 	
-	static void checkInner() {
+	void checkInner() {
 		for (int y=1; y<h-1; y++) {
 			for (int x=1; x<w-1; x++) {
 				if (map[y][x] != 2) {
@@ -149,7 +152,7 @@ public class E {
 		}
 	}
 	
-	static int count() {
+	int count() {
 		int cnt = 0;
 		for (int y=0; y<h; y++) {
 			for (int x=0; x<w; x++) {
@@ -161,4 +164,31 @@ public class E {
 		return cnt;
 	}
 	
+	void p(char c) {
+		System.out.print(c);
+	}
+	void pln(char c) {
+		System.out.println(c);
+	}
+	void p(long l) {
+		System.out.print(l);
+	}
+	void pln(long l) {
+		System.out.println(l);
+	}
+	void p(String s) {
+		System.out.print(s);
+	}
+	void pln(String s) {
+		System.out.println(s);
+	}
+	public static void main(String[] args) throws Exception {
+		long start = System.currentTimeMillis();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		new E().solve(br);
+		long end = System.currentTimeMillis();
+		if (bElapsed) {
+			System.out.println((end-start) + "ms");
+		}
+	}
 }
