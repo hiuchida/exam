@@ -1,7 +1,9 @@
 package log_parser;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +60,7 @@ public class LogParser {
 
 	public static void main(String[] args) throws Exception {
 		long start = System.currentTimeMillis();
-		String fname = "app.log";
+		String fname = "/tmp/app.log";
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fname), "MS932"));
 		while (true) {
 			String line = br.readLine();
@@ -86,21 +88,24 @@ public class LogParser {
 				}
 			}
 		}
+		fname = fname.replaceAll("log", "txt");
+		BufferedWriter bw = new BufferedWriter(new FileWriter(fname));
 		for (Log log : list) {
 			if (log.status == Status.START) {
-				System.out.print(log.date.substring(0, 19) + ",");
+				bw.write(log.date.substring(0, 19) + "\t");
 				if (log.end != null) {
-					System.out.print(log.end.date.substring(0, 19));
+					bw.write(log.end.date.substring(0, 19));
 				}
-				System.out.print("," + log.thread + ",");
+				bw.write("\t" + log.thread + "\t");
 				if (log.end != null) {
-					System.out.print(log.end.ipaddr);
+					bw.write(log.end.ipaddr);
 				} else {
-					System.out.print(log.ipaddr);
+					bw.write(log.ipaddr);
 				}
-				System.out.println("");
+				bw.newLine();
 			}
 		}
+		bw.close();
 		long end = System.currentTimeMillis();
 		System.out.println((end - start) + "ms");
 	}
