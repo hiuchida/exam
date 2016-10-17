@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -32,6 +33,19 @@ public class Main {
 		pln("" + (a+b+c) + " " + line);
 	}
 
+	class Person {
+		int no;
+		int a;
+		public Person(int no, int a) {
+			this.no = no;
+			this.a = a;
+		}
+	}
+	class PersonComp implements Comparator<Person> {
+		public int compare(Person o1, Person o2) {
+			return o2.a - o1.a;
+		}
+	}
 	void p(char c) {
 		System.out.print(c);
 	}
