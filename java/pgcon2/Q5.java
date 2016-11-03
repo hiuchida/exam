@@ -10,8 +10,8 @@ import java.util.Set;
 
 public class Q5 {
 	static boolean bElapsed = false;
-	List<Movie> movieList = new ArrayList<>();
 	int interval;
+	List<String> movieList = new ArrayList<>();
 	List<Schedule> scheduleList = new ArrayList<>();
 	List<Schedule> answerList = new ArrayList<>();
 	int answerCnt;
@@ -23,11 +23,7 @@ public class Q5 {
 		interval = Integer.parseInt(line);
 		for (int i=0; i<n; i++) {
 			line = br.readLine();
-			Movie m = new Movie(line);
-			movieList.add(m);
-			for (int j=0; j<m.start.size(); j++) {
-				scheduleList.add(new Schedule(i, m.start.get(j), m.end.get(j)));
-			}
+			parse(i, line);
 		}
 		Collections.sort(scheduleList);
 		for (int i=0; i<scheduleList.size(); i++) {
@@ -47,8 +43,7 @@ public class Q5 {
 				Schedule next = answerList.get(i+1);
 				diff = next.start - s.end;
 			}
-			Movie m = movieList.get(s.movieIdx);
-			String title = m.title;
+			String title = movieList.get(s.movieIdx);
 			String start = s.getStartStr();
 			String end = s.getEndStr();
 			if (diff>=0) {
@@ -56,6 +51,21 @@ public class Q5 {
 			} else {
 				pln(title+" "+start+" "+end);
 			}
+		}
+	}
+	
+	void parse(int idx, String line) {
+		String[] flds = line.split(" ");
+		movieList.add(flds[0]);
+		boolean bStart = true;
+		int start = 0;
+		for (int i=1; i<flds.length; i++) {
+			if (flds[i].length() == 0) continue;
+			String[] hhmm = flds[i].split(":");
+			int time = Integer.parseInt(hhmm[0]) * 60 + Integer.parseInt(hhmm[1]);
+			if (bStart) start = time;
+			else scheduleList.add(new Schedule(idx, start, time));
+			bStart = !bStart;
 		}
 	}
 	
@@ -103,26 +113,6 @@ public class Q5 {
 		return false;
 	}
 
-	class Movie {
-		String title;
-		List<Integer> start = new ArrayList<>();
-		List<Integer> end = new ArrayList<>();
-
-		public Movie(String line) {
-			String[] flds = line.split(" ");
-			title = flds[0];
-			boolean bStart = true;
-			for (int i=1; i<flds.length; i++) {
-				if (flds[i].length() == 0) continue;
-				String[] hhmm = flds[i].split(":");
-				int time = Integer.parseInt(hhmm[0]) * 60 + Integer.parseInt(hhmm[1]);
-				if (bStart) start.add(time);
-				else end.add(time);
-				bStart = !bStart;
-			}
-		}
-	}
-	
 	class Schedule implements Comparable<Schedule> {
 		int movieIdx;
 		int start;
