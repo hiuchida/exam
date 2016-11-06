@@ -12,8 +12,8 @@ public class A {
 		int a = Integer.parseInt(flds[0]);
 		int b = Integer.parseInt(flds[1]);
 		int c = Integer.parseInt(flds[2]);
-		double ans = (double)c/(double)a*(double)b;
-		System.out.println(ans);
+		double ans = (double)c*b/a;
+		pln(ans);
 	}
 
 	void p(char c) {
@@ -21,6 +21,12 @@ public class A {
 	}
 	void pln(char c) {
 		System.out.println(c);
+	}
+	void p(double d) {
+		System.out.print(d);
+	}
+	void pln(double d) {
+		System.out.println(d);
 	}
 	void p(long l) {
 		System.out.print(l);
