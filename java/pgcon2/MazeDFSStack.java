@@ -2,39 +2,36 @@ package pgcon2;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.io.PrintWriter;
+import java.util.ArrayDeque;
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public class MazeDFS {
+public class MazeDFSStack {
+	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
+	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	static boolean bElapsed = true;
-	boolean bOpt1 = true; //足跡をつける
-	boolean bOpt2 = true; //足跡をクリアしない
-	boolean bOpt3 = true; //歩数をつける
 	final int[] dx = { 1, 0, -1, 0 };
 	final int[] dy = { 0, 1, 0, -1 };
 	int n;
 	boolean[][] map;
 	int[][] history;
-	List<Point> route = new ArrayList<>();
+	Deque<Point> stack = new ArrayDeque<>();
 	Set<Point> answerSet = new HashSet<>();
-	int answerCnt = Integer.MAX_VALUE;
+	int answerCnt = _intMax;
 	long funcCnt;
-	int nestCnt;
-	int nestMaxCnt;
 
 	void solve(BufferedReader br) throws Exception {
 		initMap(br);
-		search(1, 1, 0);
+		search();
 		printMap();
-		if (answerCnt == Integer.MAX_VALUE) {
+		if (answerCnt == _intMax) {
 			answerCnt = -1;
 		}
 		pln(answerCnt);
 		pln("funcCnt="+funcCnt);
-		pln("nestCnt="+nestMaxCnt);
 	}
 	
 	void initMap(BufferedReader br) throws Exception {
@@ -54,9 +51,7 @@ public class MazeDFS {
 				if (line.charAt(x-1) == '#') {
 					map[y][x] = true;
 				}
-				if (bOpt3) {
-					history[y][x] = Integer.MAX_VALUE;
-				}
+				history[y][x] = _intMax;
 			}
 		}
 	}
@@ -66,46 +61,36 @@ public class MazeDFS {
 			for (int x=0; x<=n+1; x++) {
 				if (map[y][x]) p("#");
 				else if (answerSet.contains(new Point(x, y))) p("o");
-				else if (history[y][x] < Integer.MAX_VALUE) p("x");
+				else if (history[y][x] < _intMax) p("x");
 				else p(".");
 			}
 			pln("");
 		}
 	}
 	
-	void search(int x, int y, int cnt) {
-		//pln("("+x+", "+y+")");
-		funcCnt++;
-		if (funcCnt % 1000000 == 0) pln(funcCnt/1000000);
-		nestCnt++;
-		nestMaxCnt = Math.max(nestCnt, nestMaxCnt);
-		if (check(x, y, cnt)) {
-			return;
-		}
-		if (bOpt1) {
-			if (bOpt3) {
-				if (cnt >= history[y][x]) {
-					return;
+	void search() {
+		stack.push(new Point(1, 1));
+		history[1][1] = 0;
+		while (stack.size() > 0) {
+			funcCnt++;
+			if (funcCnt % 1000000 == 0) pln(funcCnt/1000000);
+			Point pt = stack.pop();
+			//pln("pop("+pt.x+", "+pt.y+")");
+			int cnt = history[pt.y][pt.x];
+			if (check(pt.x, pt.y, cnt)) {
+				continue;
+			}
+			cnt++;
+			for (int i=dx.length-1; i>=0; i--) {
+				int nx = pt.x+dx[i];
+				int ny = pt.y+dy[i];
+				//pln("check("+nx+", "+ny+")");
+				if (isMove(nx, ny, cnt)) {
+					stack.push(new Point(nx, ny));
+					history[ny][nx] = cnt;
 				}
-				history[y][x] = cnt;
-			} else {
-				if (history[y][x] > 0) {
-					return;
-				}
-				history[y][x] = 1;
 			}
 		}
-		route.add(new Point(x, y));
-		cnt++;
-		for (int i=0; i<dx.length; i++) {
-			//pln("check("+(x+dx[i])+", "+(y+dy[i])+")");
-			if (isMove(x+dx[i], y+dy[i], cnt)) {
-				search(x+dx[i], y+dy[i], cnt);
-			}
-		}
-		if (!bOpt2) history[y][x] = 0;
-		route.remove(route.size()-1);
-		nestCnt--;
 	}
 	
 	boolean isMove(int x, int y, int cnt) {
@@ -115,16 +100,8 @@ public class MazeDFS {
 		if (cnt >= answerCnt) {
 			return false;
 		}
-		if (bOpt1) {
-			if (bOpt3) {
-				if (cnt >= history[y][x]) {
-					return false;
-				}
-			} else {
-				if (history[y][x] > 0) {
-					return false;
-				}
-			}
+		if (cnt >= history[y][x]) {
+			return false;
 		}
 		return true;
 	}
@@ -138,10 +115,7 @@ public class MazeDFS {
 		}
 		if (x == n && y == n) {
 			if (cnt < answerCnt) {
-				route.add(new Point(x, y));
 				answerCnt = cnt;
-				answerSet = new HashSet<>(route);
-				route.remove(route.size()-1);
 			}
 			return true;
 		}
@@ -222,12 +196,15 @@ public class MazeDFS {
 	void pln(String s) {
 		System.out.println(s);
 	}
-	//Integer.MAX_VALUE=2147483647>10^9
-	//Long.MAX_VALUE=9223372036854775807L>10^18
+	String _line;
+	String[] _flds;
+	int[] _nums;
+	static BufferedReader _in;
+	static PrintWriter _out;
 	public static void main(String[] args) throws Exception {
 		long start = System.currentTimeMillis();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		new MazeDFS().solve(br);
+		new MazeDFSStack().solve(br);
 		long end = System.currentTimeMillis();
 		if (bElapsed) {
 			System.out.println((end-start) + "ms");
