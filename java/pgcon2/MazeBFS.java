@@ -75,7 +75,7 @@ public class MazeBFS {
 			funcCnt++;
 			if (funcCnt % 1000000 == 0) pln(funcCnt/1000000);
 			Point pt = queue.poll();
-			pln("poll("+pt.x+", "+pt.y+")");
+			//pln("poll("+pt.x+", "+pt.y+")");
 			int cnt = history[pt.y][pt.x];
 			if (check(pt.x, pt.y, cnt)) {
 				continue;
