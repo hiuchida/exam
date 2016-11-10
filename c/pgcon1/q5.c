@@ -9,17 +9,13 @@
 #define MAX_LEN ( 100 )
 
 typedef struct tagNode {
-	int point;
+	int cost;
 	char next[27];
 } Node;
 
-typedef struct tagPoint {
-    char ids[27];
-    int points;
-} Point;
-
 Node nodes[26];
-Point pointList[100000];
+char answerPath[27];
+int answerCost;
 char line[MAX_LEN];
 char *cols[MAX_LEN];
 
@@ -43,37 +39,39 @@ void addPrev(char cur, char prev) {
 	*next = cur;
 }
 
-void addPoint(char *ids, int points) {
-    int i;
-    
-    for (i=0; pointList[i].ids[0]; i++) ;
-    strcpy(pointList[i].ids, ids);
-    pointList[i].points = points;
+void check(char *path, int cost) {
+	if (cost > answerCost) {
+		answerCost = cost;
+		strcpy(answerPath, path);
+	} else if (cost == answerCost) {
+		if (strcmp(path, answerPath) < 0) {
+			strcpy(answerPath, path);
+		}
+	}
 }
 
-void seek(char cur, char *ids, int points) {
+void seek(char cur, char *path, int cost) {
     char buf[27];
     char *ptr;
     
-    for (ptr=ids; *ptr; ptr++) {
+    for (ptr=path; *ptr; ptr++) {
         if (*ptr == cur) return;
     }
-    strcpy(buf, ids);
+    strcpy(buf, path);
     for (ptr=buf; *ptr; ptr++) ;
     *ptr++ = cur;
     *ptr = '\0';
-    points += nodes[cur-'A'].point;
-    //printf("%s,%d\n", buf, points);
-    addPoint(buf, points);
+    cost += nodes[cur-'A'].cost;
+    //printf("%s,%d\n", buf, cost);
+    check(buf, cost);
     for (ptr=nodes[cur-'A'].next; *ptr; ptr++) {
-        seek(*ptr, buf, points);
+        seek(*ptr, buf, cost);
     }
 }
 
 int main() {
-	int job, i, j, count, v, n, maxVal, val;
+	int job, i, j, count, v, n;
 	char cur, prev;
-	char *maxKey, *key;
 
 	fgets(line, sizeof(line), stdin);
 	job = atoi(line);
@@ -83,7 +81,7 @@ int main() {
 		cur = cols[0][0];
 		v = atoi(cols[1]);
 		n = atoi(cols[2]);
-		nodes[cur-'A'].point = v;
+		nodes[cur-'A'].cost = v;
 		if (cur == 'A') continue;
 		for (j=0; j<n; j++) {
 			prev = cols[3+j][0];
@@ -91,20 +89,6 @@ int main() {
 		}
 	}
     seek('A', "", 0);
-    maxKey = NULL;
-    maxVal = 0;
-    for (i=0; pointList[i].ids[0]; i++) {
-        key = pointList[i].ids;
-        val = pointList[i].points;
-        if (val > maxVal) {
-            maxKey = key;
-            maxVal = val;
-        } else if (val == maxVal) {
-            if (strcmp(key, maxKey) < 0) {
-                maxKey = key;
-            }
-        }
-    }
-    printf("%s\n", maxKey);
+    printf("%s\n", answerPath);
     return 0;
 }
