@@ -77,13 +77,13 @@ public class MazeDFSMax {
 		if (walk[y][x]) {
 			return;
 		}
-		//if (cnt <= history[y][x]) {
-		//	return;
-		//}
+		if (cnt < history[y][x]) {
+			return;
+		}
 		nestCnt++;
 		nestMaxCnt = Math.max(nestCnt, nestMaxCnt);
 		walk[y][x] = true;
-		history[y][x] = cnt;
+		//history[y][x] = cnt;
 		route.add(new Point(x, y));
 		cnt++;
 		for (int i=0; i<dx.length; i++) {
@@ -104,9 +104,9 @@ public class MazeDFSMax {
 		if (walk[y][x]) {
 			return false;
 		}
-		//if (cnt <= history[y][x]) {
-		//	return false;
-		//}
+		if (cnt < history[y][x]) {
+			return false;
+		}
 		return true;
 	}
 
@@ -117,6 +117,11 @@ public class MazeDFSMax {
 		if (x == n && y == n) {
 			if (cnt > answerCnt) {
 				route.add(new Point(x, y));
+				pln(route.toString());
+				for (int i=0; i<route.size(); i++) {
+					Point pt = route.get(i);
+					history[pt.y][pt.x] = Math.max(i, history[pt.y][pt.x]);
+				}
 				answerCnt = cnt;
 				answerSet = new HashSet<>(route);
 				route.remove(route.size()-1);
