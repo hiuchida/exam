@@ -5,19 +5,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Set;
 
 public class CreateMaze {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	static boolean bElapsed = false;
-	Set<Point> set = new HashSet<>();
 
 	void solve() {
-		int n = 100; //50;
-		int max = 4000; //1000;
+		int n = 49; //100; //50;
+		int max = 1000; //4000; //1000;
 		boolean[][] map = new boolean[n][n];
+		for (int y=1; y<n; y+=2) {
+			for (int x=1; x<n; x+=2) {
+				map[y][x] = true;
+				max--;
+			}
+		}
 		for (int i=0; i<max; i++) {
 			int x = (int)(Math.random()*n);
 			int y = (int)(Math.random()*n);
@@ -29,13 +32,11 @@ public class CreateMaze {
 				i--;
 				continue;
 			}
-			Point pt = new Point(x, y);
-			if (set.contains(pt)) {
+			if (map[y][x]) {
 				i--;
 				continue;
 			}
-			set.add(pt);
-			map[pt.y][pt.x] = true;
+			map[y][x] = true;
 		}
 		pln(n);
 		for (int y=0; y<n; y++) {

@@ -47,6 +47,10 @@ public class Main {
 			this.x = x;
 			this.y = y;
 		}
+		public Point(Point pt) {
+			this.x = pt.x;
+			this.y = pt.y;
+		}
 		public boolean equals(Object o) {
 			if (o instanceof Point) {
 				Point that = (Point)o;
