@@ -28,15 +28,15 @@ void initMap() {
 	
 	fgets(line, sizeof(line), stdin);
 	n = atoi(line);
-	for (int i=0; i<n+2; i++) {
+	for (i=0; i<n+2; i++) {
 		map[0][i] = true;
 		map[n+1][i] = true;
 		map[i][0] = true;
 		map[i][n+1] = true;
 	}
-	for (int y=1; y<=n; y++) {
+	for (y=1; y<=n; y++) {
 		fgets(line, sizeof(line), stdin);
-		for (int x=1; x<=n; x++) {
+		for (x=1; x<=n; x++) {
 			if (line[x-1] == '#') {
 				map[y][x] = true;
 			}
@@ -47,8 +47,8 @@ void initMap() {
 void initHistory(boolean bMin) {
 	int x, y;
 	int def = bMin ? _intMax : -1;
-	for (int y=1; y<=n; y++) {
-		for (int x=1; x<=n; x++) {
+	for (y=1; y<=n; y++) {
+		for (x=1; x<=n; x++) {
 			history[y][x] = def;
 		}
 	}
@@ -61,8 +61,8 @@ void initHistory(boolean bMin) {
 void printMap(boolean bMin) {
 	int x, y;
 	int def = bMin ? _intMax : -1;
-	for (int y=0; y<=n+1; y++) {
-		for (int x=0; x<=n+1; x++) {
+	for (y=0; y<=n+1; y++) {
+		for (x=0; x<=n+1; x++) {
 			if (map[y][x]) printf("#");
 			//else if (answerSet.contains(new Point(x, y))) printf("o");
 			//else if (history[y][x] != def) printf("x");
@@ -110,7 +110,7 @@ void searchDFSMin(int x, int y, int cnt) {
 	nestMaxCnt = max(nestMaxCnt, nestCnt);
 	history[y][x] = cnt;
 	cnt++;
-	for (int i=0; i<4; i++) {
+	for (i=0; i<4; i++) {
 		if (isMoveMin(x+dx[i], y+dy[i], cnt)) {
 			searchDFSMin(x+dx[i], y+dy[i], cnt);
 		}
@@ -153,7 +153,7 @@ void searchDFSMax(int x, int y, int cnt) {
 	}
 	walk[y][x] = true;
 	cnt++;
-	for (int i=0; i<4; i++) {
+	for (i=0; i<4; i++) {
 		if (isMoveMax(x+dx[i], y+dy[i], cnt)) {
 			searchDFSMax(x+dx[i], y+dy[i], cnt);
 		}
