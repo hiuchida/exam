@@ -17,8 +17,9 @@ public class Maze {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	static boolean bElapsed = true;
-	static boolean bPrintMap = true;
+	static boolean bPrintMap = false;
 	static boolean bBFS = true;
+	static boolean bStack = true;
 	final int[] dx = { 1, 0, -1, 0 };
 	final int[] dy = { 0, 1, 0, -1 };
 	//final int[] dx = { 0, 1, -1, 0 };
@@ -38,13 +39,15 @@ public class Maze {
 
 	void solve() {
 		initMap();
-		fillMap();
+		//fillMap();
 		initHistory(true);
 		if (bPrintMap) printMap(true);
 		
 		if (bBFS) searchBFSMin();
-		else searchDFSMin();
+		else if (bStack) searchDFSMin();
+		else searchDFSMinRecursive(1, 1, 0);
 		if (bPrintMap) printMap(true);
+		pln("nestCnt="+nestMaxCnt);
 		if (answerCnt == _intMax) {
 			answerCnt = -1;
 			pln(answerCnt);
@@ -120,6 +123,8 @@ public class Maze {
 		answerSet = new HashSet<>();
 		answerCnt = def;
 		funcCnt = 0;
+		nestCnt = 0;
+		nestMaxCnt = 0;
 	}
 	
 	void printMap(boolean bMin) {
@@ -133,6 +138,7 @@ public class Maze {
 			}
 			pln("");
 		}
+		pln("");
 		_out.flush();
 	}
 	
@@ -144,6 +150,7 @@ public class Maze {
 		while (queue.size() > 0) {
 			funcCnt++;
 			if (funcCnt % 1000000 == 0) pln(funcCnt/1000000);
+			nestMaxCnt = Math.max(nestMaxCnt, queue.size());
 			History h = queue.poll();
 			pt = h.pt;
 			route = h.route;
@@ -174,6 +181,7 @@ public class Maze {
 		while (stack.size() > 0) {
 			funcCnt++;
 			if (funcCnt % 1000000 == 0) pln(funcCnt/1000000);
+			nestMaxCnt = Math.max(nestMaxCnt, stack.size());
 			History h = stack.pop();
 			pt = h.pt;
 			route = h.route;
@@ -194,6 +202,29 @@ public class Maze {
 				}
 			}
 		}
+	}
+	
+	void searchDFSMinRecursive(int x, int y, int cnt) {
+		funcCnt++;
+		if (funcCnt % 1000000 == 0) pln(funcCnt/1000000);
+		if (checkMin(x, y, cnt)) {
+			return;
+		}
+		if (cnt >= history[y][x]) {
+			return;
+		}
+		nestCnt++;
+		nestMaxCnt = Math.max(nestCnt, nestMaxCnt);
+		history[y][x] = cnt;
+		cnt++;
+		for (int i=dx.length-1; i>=0; i--) {
+			int nx = x+dx[i];
+			int ny = y+dy[i];
+			if (isMoveMin(nx, ny, cnt)) {
+				searchDFSMinRecursive(nx, ny, cnt);
+			}
+		}
+		nestCnt--;
 	}
 	
 	boolean isMoveMin(int x, int y, int cnt) {

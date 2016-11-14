@@ -7,17 +7,21 @@
 typedef int boolean;
 #define true  ( 1 )
 #define false ( 0 )
+#define max(a,b) ((a)>(b)?(a):(b))
+#define min(a,b) ((a)<(b)?(a):(b))
 
 int dx[] = { 1, 0, -1, 0 };
 int dy[] = { 0, 1, 0, -1 };
 char line[MAX_LEN];
 char *cols[MAX_LEN];
 int  n;
-char map[100+2][100+2];
-int  history[100+2][100+2];
-char walk[100+2][100+2];
+char map[200+2][200+2];
+int  history[200+2][200+2];
+char walk[200+2][200+2];
 int  answerCnt;
 long funcCnt;
+long nestCnt;
+long nestMaxCnt;
 
 void initMap() {
 	int i, x, y;
@@ -25,16 +29,16 @@ void initMap() {
 	fgets(line, sizeof(line), stdin);
 	n = atoi(line);
 	for (int i=0; i<n+2; i++) {
-		map[0][i] = 1;
-		map[n+1][i] = 1;
-		map[i][0] = 1;
-		map[i][n+1] = 1;
+		map[0][i] = true;
+		map[n+1][i] = true;
+		map[i][0] = true;
+		map[i][n+1] = true;
 	}
 	for (int y=1; y<=n; y++) {
 		fgets(line, sizeof(line), stdin);
 		for (int x=1; x<=n; x++) {
 			if (line[x-1] == '#') {
-				map[y][x] = 1;
+				map[y][x] = true;
 			}
 		}
 	}
@@ -50,6 +54,8 @@ void initHistory(boolean bMin) {
 	}
 	answerCnt = def;
 	funcCnt = 0;
+	nestCnt = 0;
+	nestMaxCnt = 0;
 }
 
 void printMap(boolean bMin) {
@@ -100,6 +106,8 @@ void searchDFSMin(int x, int y, int cnt) {
 	if (cnt >= history[y][x]) {
 		return;
 	}
+	nestCnt++;
+	nestMaxCnt = max(nestMaxCnt, nestCnt);
 	history[y][x] = cnt;
 	cnt++;
 	for (int i=0; i<4; i++) {
@@ -107,6 +115,7 @@ void searchDFSMin(int x, int y, int cnt) {
 			searchDFSMin(x+dx[i], y+dy[i], cnt);
 		}
 	}
+	nestCnt--;
 }
 
 boolean checkMax(int x, int y, int cnt) {
@@ -158,6 +167,7 @@ int main() {
 	//printMap(true);
 	searchDFSMin(1, 1, 0);
 	//printMap(true);
+	printf("nestCnt=%d\n", nestMaxCnt);
 	if (answerCnt == _intMax) {
 		answerCnt = -1;
 		printf("%d\n", answerCnt);

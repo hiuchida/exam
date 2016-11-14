@@ -10,33 +10,22 @@ public class CreateMaze {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	static boolean bElapsed = false;
+	final int[] dx = { 1, 0, -1, 0 };
+	final int[] dy = { 0, 1, 0, -1 };
 
 	void solve() {
 		int n = 49; //100; //50;
-		int max = 1000; //4000; //1000;
 		boolean[][] map = new boolean[n][n];
 		for (int y=1; y<n; y+=2) {
 			for (int x=1; x<n; x+=2) {
 				map[y][x] = true;
-				max--;
+				int d = (int)(Math.random()*(y==1?4:3));
+				if (map[y+dy[d]][x+dx[d]]) {
+					x-=2;
+					continue;
+				}
+				map[y+dy[d]][x+dx[d]] = true;
 			}
-		}
-		for (int i=0; i<max; i++) {
-			int x = (int)(Math.random()*n);
-			int y = (int)(Math.random()*n);
-			if (x == 0 && y == 0) {
-				i--;
-				continue;
-			}
-			if (x == n-1 && y == n-1) {
-				i--;
-				continue;
-			}
-			if (map[y][x]) {
-				i--;
-				continue;
-			}
-			map[y][x] = true;
 		}
 		pln(n);
 		for (int y=0; y<n; y++) {

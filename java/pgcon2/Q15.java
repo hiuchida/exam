@@ -1,47 +1,65 @@
-package atcoder;
+package pgcon2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.math.BigInteger;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Deque;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
-public class Main {
+public class Q15 {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	static boolean bElapsed = false;
-	StringBuilder sb = new StringBuilder();
-	List<String> list = new ArrayList<>();
-	Set<String> set = new HashSet<>();
-	Map<String,String> map = new HashMap<>();
-	Queue<String> queue = new ArrayDeque<>();
-	Deque<String> stack = new ArrayDeque<>();
+	final int[] dx = { 1, 0, -1, 0 };
+	final int[] dy = { 0, 1, 0, -1 };
 
 	void solve() {
 		int n = readNum();
-		BigInteger bn = BigInteger.valueOf(n);
-		int[] ia = readNums();
-		int a = ia[0];
-		int b = ia[1];
-		String line = readLine();
+		long sum = calc(n);
+		pln(sum);
+/*
+1
+1+4
+5+4+4
+13+4+4+4
+25+4*4
+
+　　　３
+　　３２３
+　３２１２３
+３２１０１２３
+　３２１２３
+　　３２３
+　　　３
+*/
+		/*
+		int n = readNum();
+		Set<Point> set = new HashSet<>();
+		set.add(new Point(0, 0));
 		for (int i=0; i<n; i++) {
-			for (int j=0; j<n; j++) {
+			Queue<Point> queue = new ArrayDeque<>();
+			queue.addAll(set);
+			while (queue.size() > 0) {
+				Point pt = queue.poll();
+				for (int d=0; d<dx.length; d++) {
+					Point npt = new Point(pt.x+dx[d], pt.y+dy[d]);
+					if (!set.contains(npt)) {
+						set.add(npt);
+					}
+				}
 			}
 		}
-		for (int i=0; i<line.length(); i++) {
-			char ch = line.charAt(i);
-		}
-		pln("" + (n+a+b) + " " + line);
+		pln(set.size());
+		*/
+	}
+	
+	long calc(int n) {
+		if (n == 0) return 1;
+		return n * 4 + calc(n - 1);
 	}
 
 	class Point {
@@ -159,7 +177,7 @@ public class Main {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Main().solve();
+		new Q15().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {
