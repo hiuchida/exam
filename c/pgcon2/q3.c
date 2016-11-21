@@ -90,11 +90,47 @@ void right(char ch) {
     }
 }
 
+int exclude(int a, int b) {
+	int i, j=0;
+	char buf[100];
+	strcpy(buf, line);
+	for (i=0; buf[i]; i++) {
+		if (i != a && i != b) {
+			line[j++] = buf[i];
+		}
+	}
+	line[j] = '\0';
+	return strlen(line);
+}
+
+int preprocess() {
+	int i, len;
+	len = strlen(line);
+	for (i=0; i<len; i++) {
+		if (i+1<len && line[i] == line[i+1]) {
+			len = exclude(i, i+1);
+			i--;
+			continue;
+		}
+		if (i+2<len && line[i] == line[i+2]) {
+			len = exclude(i, i+2);
+			i--;
+		}
+	}
+	return len;
+}
+
 int main() {
-    int len;
+	int len;
 	fgets(line, sizeof(line), stdin);
 	len = strlen(line);
 	if (line[len-1] == '\n') line[--len] = '\0';
+	if (line[len-1] == '\r') line[--len] = '\0';
+	len = preprocess();
+	if (len == 0) {
+		printf("0\n");
+		return 0;
+	}
 	long max = 1L << (len-1);
 	int min = _intMax;
 	long i;
@@ -116,4 +152,3 @@ int main() {
 	printf("%d\n", min);
     return 0;
 }
-
