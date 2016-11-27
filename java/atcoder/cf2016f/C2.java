@@ -1,47 +1,61 @@
-package atcoder;
+package atcoder.cf2016f;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.math.BigInteger;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Deque;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Queue;
 import java.util.Set;
 
-public class Main {
+public class C2 {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	static boolean bElapsed = false;
-	StringBuilder sb = new StringBuilder();
-	List<String> list = new ArrayList<>();
-	Set<String> set = new HashSet<>();
-	Map<String,String> map = new HashMap<>();
-	Queue<String> queue = new ArrayDeque<>();
-	Deque<String> stack = new ArrayDeque<>();
+	List<Node> list = new ArrayList<>();
+	int n;
+	int m;
 
 	void solve() {
-		int n = readNum();
-		BigInteger bn = BigInteger.valueOf(n);
 		int[] ia = readNums();
-		int a = ia[0];
-		int b = ia[1];
-		String line = readLine();
+		n = ia[0];
+		m = ia[1];
+		for (int i=0; i<n+m; i++) {
+			list.add(new Node());
+		}
 		for (int i=0; i<n; i++) {
-			for (int j=0; j<n; j++) {
+			Node n1 = list.get(i);
+			ia = readNums();
+			for (int j=1; j<ia.length; j++) {
+				int k = n+ia[j]-1;
+				Node n2 = list.get(k);
+				n1.link.add(k);
+				n2.link.add(i);
 			}
 		}
-		for (int i=0; i<line.length(); i++) {
-			char ch = line.charAt(i);
+		dfs(0);
+		for (int i=0; i<n; i++) {
+			Node n = list.get(i);
+			if (!n.vt) {
+				pln("NO");
+				return;
+			}
 		}
-		pln("" + (n+a+b) + " " + line);
+		pln("YES");
+	}
+	void dfs(int i) {
+		Node n = list.get(i);
+		if (n.vt) return;
+		n.vt = true;
+		for (int l : n.link) {
+			dfs(l);
+		}
+	}
+	class Node {
+		boolean vt;
+		Set<Integer> link = new HashSet<>();
 	}
 
 	class UnionFind {
@@ -127,21 +141,8 @@ public class Main {
 			return o1.val - o2.val;
 		}
 	}
-	long pow_mod(long n, long p, long m) {
-		if (p == 0) {
-			return 1;
-		} else if (p % 2 == 1) {
-			return pow_mod(n, p-1, m) * n % m;
-		} else {
-			long sum = pow_mod(n, p/2, m);
-			return sum * sum % m;
-		}
-	}
 	int pint(String s) {
 		return Integer.parseInt(s);
-	}
-	long plong(String s) {
-		return Long.parseLong(s);
 	}
 	String readLine() {
 		try {
@@ -201,7 +202,7 @@ public class Main {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Main().solve();
+		new C2().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {

@@ -1,47 +1,62 @@
-package atcoder;
+package atcoder.atc001;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.math.BigInteger;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Deque;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Queue;
-import java.util.Set;
 
-public class Main {
+public class A {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	static boolean bElapsed = false;
-	StringBuilder sb = new StringBuilder();
-	List<String> list = new ArrayList<>();
-	Set<String> set = new HashSet<>();
-	Map<String,String> map = new HashMap<>();
 	Queue<String> queue = new ArrayDeque<>();
 	Deque<String> stack = new ArrayDeque<>();
+	int h;
+	int w;
+	boolean[][] map;
+	Point start;
+	Point gole;
+	boolean bGole;
 
 	void solve() {
-		int n = readNum();
-		BigInteger bn = BigInteger.valueOf(n);
 		int[] ia = readNums();
-		int a = ia[0];
-		int b = ia[1];
-		String line = readLine();
-		for (int i=0; i<n; i++) {
-			for (int j=0; j<n; j++) {
+		h = ia[0];
+		w = ia[1];
+		map = new boolean[h+2][w+2];
+		for (int y=1; y<=h; y++) {
+			String line = readLine();
+			for (int x=1; x<=w; x++) {
+				char ch = line.charAt(x-1);
+				if (ch == '.') map[y][x] = true;
+				else if (ch == 's') {
+					map[y][x] = true;
+					start = new Point(x, y);
+				} else if (ch == 'g') {
+					map[y][x] = true;
+					gole = new Point(x, y);
+				}
 			}
 		}
-		for (int i=0; i<line.length(); i++) {
-			char ch = line.charAt(i);
+		dfs(start.x, start.y);
+		if (bGole) pln("Yes");
+		else pln("No");
+	}
+	boolean dfs(int x, int y) {
+		if (!map[y][x]) return false;
+		if (x == gole.x && y == gole.y) {
+			bGole = true;
+			return true;
 		}
-		pln("" + (n+a+b) + " " + line);
+		map[y][x] = false;
+		if (dfs(x-1, y)) return true;
+		if (dfs(x+1, y)) return true;
+		if (dfs(x, y-1)) return true;
+		if (dfs(x, y+1)) return true;
+		return false;
 	}
 
 	class UnionFind {
@@ -127,21 +142,8 @@ public class Main {
 			return o1.val - o2.val;
 		}
 	}
-	long pow_mod(long n, long p, long m) {
-		if (p == 0) {
-			return 1;
-		} else if (p % 2 == 1) {
-			return pow_mod(n, p-1, m) * n % m;
-		} else {
-			long sum = pow_mod(n, p/2, m);
-			return sum * sum % m;
-		}
-	}
 	int pint(String s) {
 		return Integer.parseInt(s);
-	}
-	long plong(String s) {
-		return Long.parseLong(s);
 	}
 	String readLine() {
 		try {
@@ -201,7 +203,7 @@ public class Main {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Main().solve();
+		new A().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {

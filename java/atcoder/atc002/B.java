@@ -1,10 +1,9 @@
-package atcoder;
+package atcoder.atc002;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.math.BigInteger;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -16,7 +15,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
-public class Main {
+public class B {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	static boolean bElapsed = false;
@@ -28,20 +27,22 @@ public class Main {
 	Deque<String> stack = new ArrayDeque<>();
 
 	void solve() {
-		int n = readNum();
-		BigInteger bn = BigInteger.valueOf(n);
-		int[] ia = readNums();
-		int a = ia[0];
-		int b = ia[1];
-		String line = readLine();
-		for (int i=0; i<n; i++) {
-			for (int j=0; j<n; j++) {
-			}
+		String[] sa = readFlds();
+		long n = plong(sa[0]);
+		long m = plong(sa[1]);
+		long p = plong(sa[2]);
+		long sum = pow_mod(n, p, m);
+		pln(sum);
+	}
+	long pow_mod(long n, long p, long m) {
+		if (p == 0) {
+			return 1;
+		} else if (p % 2 == 1) {
+			return pow_mod(n, p-1, m) * n % m;
+		} else {
+			long sum = pow_mod(n, p/2, m);
+			return sum * sum % m;
 		}
-		for (int i=0; i<line.length(); i++) {
-			char ch = line.charAt(i);
-		}
-		pln("" + (n+a+b) + " " + line);
 	}
 
 	class UnionFind {
@@ -127,16 +128,6 @@ public class Main {
 			return o1.val - o2.val;
 		}
 	}
-	long pow_mod(long n, long p, long m) {
-		if (p == 0) {
-			return 1;
-		} else if (p % 2 == 1) {
-			return pow_mod(n, p-1, m) * n % m;
-		} else {
-			long sum = pow_mod(n, p/2, m);
-			return sum * sum % m;
-		}
-	}
 	int pint(String s) {
 		return Integer.parseInt(s);
 	}
@@ -201,7 +192,7 @@ public class Main {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Main().solve();
+		new B().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {

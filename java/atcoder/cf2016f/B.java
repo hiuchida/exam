@@ -1,10 +1,9 @@
-package atcoder;
+package atcoder.cf2016f;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.math.BigInteger;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -16,7 +15,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
-public class Main {
+public class B {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	static boolean bElapsed = false;
@@ -29,50 +28,16 @@ public class Main {
 
 	void solve() {
 		int n = readNum();
-		BigInteger bn = BigInteger.valueOf(n);
-		int[] ia = readNums();
-		int a = ia[0];
-		int b = ia[1];
-		String line = readLine();
-		for (int i=0; i<n; i++) {
-			for (int j=0; j<n; j++) {
-			}
+		int x;
+		for (x=1; true; x++) {
+			if (x*(x+1)/2 >= n) break;
 		}
-		for (int i=0; i<line.length(); i++) {
-			char ch = line.charAt(i);
+		int e = x*(x+1)/2 - n;
+		for (int i=1; i<=x; i++) {
+			if (i != e) pln(i);
 		}
-		pln("" + (n+a+b) + " " + line);
 	}
 
-	class UnionFind {
-		int[] uf;
-		public UnionFind(int n) {
-			uf = new int[n];
-			for (int i=0; i<n; i++) {
-				uf[i] = i;
-			}
-		}
-		public int root(int v) {
-			if (uf[v] == v) return v;
-			uf[v] = root(uf[v]);
-			return uf[v];
-		}
-		public void merge(int u, int v) {
-			u = root(u);
-			v = root(v);
-			if (u == v) return;
-			uf[v] = u;
-		}
-		public boolean same(int u, int v) {
-			return root(u) == root(v);
-		}
-		public void print() {
-			for (int i=0; i<uf.length; i++) {
-				p(uf[i]+" ");
-			}
-			pln("");
-		}
-	}
 	class Point {
 		int x;
 		int y;
@@ -127,21 +92,8 @@ public class Main {
 			return o1.val - o2.val;
 		}
 	}
-	long pow_mod(long n, long p, long m) {
-		if (p == 0) {
-			return 1;
-		} else if (p % 2 == 1) {
-			return pow_mod(n, p-1, m) * n % m;
-		} else {
-			long sum = pow_mod(n, p/2, m);
-			return sum * sum % m;
-		}
-	}
 	int pint(String s) {
 		return Integer.parseInt(s);
-	}
-	long plong(String s) {
-		return Long.parseLong(s);
 	}
 	String readLine() {
 		try {
@@ -201,7 +153,7 @@ public class Main {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Main().solve();
+		new B().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {
