@@ -4,20 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.math.BigInteger;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
 
-public class Main {
+public class RMQTest {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final int _intMin = Integer.MIN_VALUE;
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
@@ -25,31 +15,24 @@ public class Main {
 	static boolean bElapsed = false;
 
 	void solve() {
-		String line = readLine();
-		String[] flds = readFlds();
-		int n = readNum();
 		int[] ia = readNums();
-		int h = ia[0];
-		int w = ia[1];
-		StringBuilder sb = new StringBuilder(n);
-		List<String> list = new ArrayList<>(n);
-		Set<String> set = new HashSet<>(n);
-		Map<String,String> map = new HashMap<>(n);
-		Queue<String> queue = new ArrayDeque<>(n);
-		Deque<String> stack = new ArrayDeque<>(n);
+		int n = ia[0];
+		int q = ia[1];
 		RMQ rmq = new RMQ(n);
-		UnionFind uf = new UnionFind(n);
-		BigInteger bn = BigInteger.valueOf(n);
-		for (int i=0; i<n; i++) {
-			for (int j=i+1; j<n; j++) {
+		for (int i=0; i<q; i++) {
+			ia = readNums();
+			int t = ia[0];
+			int x = ia[1];
+			int y = ia[2];
+			if (t == 0) {
+				rmq.update(x, y);
+				rmq.print();
+			} else {
+				int v = rmq.query(x, y);
+				pln("("+x+","+y+")="+v);
+				//int[] v = rmq.query(x, y);
+				//pln("("+x+","+y+")="+v[0]+","+v[1]);
 			}
-		}
-		for (int y=0; y<h; y++) {
-			for (int x=0; x<w; x++) {
-			}
-		}
-		for (int i=0; i<line.length(); i++) {
-			char ch = line.charAt(i);
 		}
 	}
 
@@ -347,7 +330,7 @@ public class Main {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Main().solve();
+		new RMQTest().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {
