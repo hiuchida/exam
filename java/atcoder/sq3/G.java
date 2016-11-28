@@ -4,27 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
 
 public class G {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	static boolean bElapsed = false;
-	StringBuilder sb = new StringBuilder();
-	List<String> list = new ArrayList<>();
-	Set<String> set = new HashSet<>();
-	Map<String,String> map = new HashMap<>();
-	Queue<String> queue = new ArrayDeque<>();
-	Deque<String> stack = new ArrayDeque<>();
 
 	void solve() {
 		int[] ia = readNums();
@@ -34,12 +19,12 @@ public class G {
 		int mod = 998244353;
 		for (int j=1; j<=m; j++) {
 			if (j==1 || j==2) tbl[1][j] = 1;
-			else tbl[1][j] = tbl[1][j-2] + tbl[1][j-1];
+			else tbl[1][j] = (tbl[1][j-2] + tbl[1][j-1]) % mod;
 		}
 		for (int i=2; i<=n; i++) {
 			for (int j=1; j<=m; j++) {
 				if (j==1) tbl[i][j] = 1;
-				else tbl[i][j] = tbl[i][j-1] + tbl[i-1][j];
+				else tbl[i][j] = (tbl[i][j-1] + tbl[i-1][j]) % mod;
 			}
 		}
 		/*

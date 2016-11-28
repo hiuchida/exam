@@ -1,52 +1,87 @@
-package atcoder;
+package atcoder.abc032;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.math.BigInteger;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Deque;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
 
-public class Main {
+public class D4 {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	static boolean bElapsed = false;
-	StringBuilder sb = new StringBuilder();
-	List<String> list = new ArrayList<>();
-	Set<String> set = new HashSet<>();
-	Map<String,String> map = new HashMap<>();
-	Queue<String> queue = new ArrayDeque<>();
-	Deque<String> stack = new ArrayDeque<>();
+	List<Point> list = new ArrayList<>();
+	Map<Point,Long> map = new HashMap<>();
+	long[][] dp;
+	int n;
+	int w;
 
+	long dfs(int i, int w) {
+		Point key = new Point(i, w);
+		Long v = map.get(key);
+		if (v != null) return v;
+		if (i >= n) return 0;
+		Point pt = list.get(i);
+		if (w < pt.y) {
+			long r = dfs(i+1, w);
+			map.put(key, r);
+			return r;
+		}
+		long r1 = dfs(i+1, w);
+		long r2 = dfs(i+1, w-pt.y)+pt.x;
+		long r = Math.max(r1, r2);
+		map.put(key, r);
+		return r;
+	}
+	long solve2() {
+		int v = 1000;
+		dp = new long[n+1][n*v+1];
+		for (int i=n-1; i>=0; i--) {
+			Point pt = list.get(i);
+			for (int j=0; j<=n*v; j++) {
+				if (j < pt.y) dp[i][j] = dp[i+1][j];
+				else dp[i][j] = Math.max(dp[i+1][j], dp[i+1][j-pt.y]+pt.x);
+			}
+		}
+		return dp[0][w];
+	}
+	long solve3() {
+		int v = 1000;
+		dp = new long[n+1][n*v+1];
+		dp[0][0] = 0;
+		for (int i=1; i<=n*v; i++) dp[0][i] = _intMax;
+		for (int i=1; i<=n; i++) {
+			Point pt = list.get(i-1);
+			for (int j=0; j<=n*v; j++) {
+				if (j < pt.x) dp[i][j] = dp[i-1][j];
+				else dp[i][j] = Math.min(dp[i-1][j], dp[i-1][j-pt.x]+pt.y);
+			}
+		}
+		for (int i=n*v; i>=0; i--) {
+			if (dp[n][i] <= w) return i;
+		}
+		return 0;
+	}
 	void solve() {
-		String line = readLine();
-		String[] flds = readFlds();
-		int n = readNum();
 		int[] ia = readNums();
-		int h = ia[0];
-		int w = ia[1];
-		UnionFind uf = new UnionFind(n);
-		BigInteger bn = BigInteger.valueOf(n);
+		n = ia[0];
+		w = ia[1];
+		boolean bOverW = false;
 		for (int i=0; i<n; i++) {
-			for (int j=i+1; j<n; j++) {
-			}
+			ia = readNums();
+			Point pt = new Point(ia[0], ia[1]);
+			list.add(pt);
+			if (pt.y > 1000) bOverW = true;
 		}
-		for (int y=0; y<h; y++) {
-			for (int x=0; x<w; x++) {
-			}
-		}
-		for (int i=0; i<line.length(); i++) {
-			char ch = line.charAt(i);
-		}
+		long ans;
+		if (n <= 30) ans = dfs(0, w);
+		else if (!bOverW) ans = solve2();
+		else ans = solve3();
+		pln(ans);
 	}
 
 	class UnionFind {
@@ -249,7 +284,7 @@ public class Main {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Main().solve();
+		new D4().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {

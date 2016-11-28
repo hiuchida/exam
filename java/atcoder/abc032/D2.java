@@ -1,52 +1,52 @@
-package atcoder;
+package atcoder.abc032;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.math.BigInteger;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Deque;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
 
-public class Main {
+public class D2 {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	static boolean bElapsed = false;
-	StringBuilder sb = new StringBuilder();
-	List<String> list = new ArrayList<>();
-	Set<String> set = new HashSet<>();
-	Map<String,String> map = new HashMap<>();
-	Queue<String> queue = new ArrayDeque<>();
-	Deque<String> stack = new ArrayDeque<>();
+	List<Point> list = new ArrayList<>();
+	Map<Point,Long> map = new HashMap<>();
+	int n;
+	int w;
 
 	void solve() {
-		String line = readLine();
-		String[] flds = readFlds();
-		int n = readNum();
 		int[] ia = readNums();
-		int h = ia[0];
-		int w = ia[1];
-		UnionFind uf = new UnionFind(n);
-		BigInteger bn = BigInteger.valueOf(n);
+		n = ia[0];
+		w = ia[1];
 		for (int i=0; i<n; i++) {
-			for (int j=i+1; j<n; j++) {
-			}
+			ia = readNums();
+			Point pt = new Point(ia[0], ia[1]);
+			list.add(pt);
 		}
-		for (int y=0; y<h; y++) {
-			for (int x=0; x<w; x++) {
-			}
+		long ans = dfs(0, w);
+		pln(ans);
+	}
+	long dfs(int i, int w) {
+		Point key = new Point(i, w);
+		Long v = map.get(key);
+		if (v != null) return v;
+		if (i >= n) return 0;
+		Point pt = list.get(i);
+		if (w < pt.y) {
+			long r = dfs(i+1, w);
+			map.put(key, r);
+			return r;
 		}
-		for (int i=0; i<line.length(); i++) {
-			char ch = line.charAt(i);
-		}
+		long r1 = dfs(i+1, w);
+		long r2 = dfs(i+1, w-pt.y)+pt.x;
+		long r = Math.max(r1, r2);
+		map.put(key, r);
+		return r;
 	}
 
 	class UnionFind {
@@ -249,7 +249,7 @@ public class Main {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Main().solve();
+		new D2().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {
