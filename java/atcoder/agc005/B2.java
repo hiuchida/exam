@@ -1,26 +1,14 @@
-package atcoder;
+package atcoder.agc005;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.math.BigInteger;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
-public class Main {
+public class B2 {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final int _intMin = Integer.MIN_VALUE;
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
@@ -28,36 +16,26 @@ public class Main {
 	static boolean bElapsed = false;
 
 	void solve() {
-		String line = readLine();
-		String[] flds = readFlds();
 		int n = readNum();
-		int[] ia = readNums();
-		int h = ia[0];
-		int w = ia[1];
-		StringBuilder sb = new StringBuilder(n);
-		List<String> list = new ArrayList<>(n);
-		LinkedList<String> list2 = new LinkedList<>();
-		Set<String> set = new HashSet<>(n);
-		TreeSet<String> set2 = new TreeSet<>();
-		Map<String,String> map = new HashMap<>(n);
-		TreeMap<String,String> map2 = new TreeMap<>();
-		Queue<String> queue = new ArrayDeque<>(n);
-		Deque<String> stack = new ArrayDeque<>(n);
-		RMQ rmq = new RMQ(n);
-		RMQIndex rmq2 = new RMQIndex(n);
-		UnionFind uf = new UnionFind(n);
-		BigInteger bn = BigInteger.valueOf(n);
+		int[] idx = new int[n];
+		String[] flds = readFlds();
 		for (int i=0; i<n; i++) {
-			for (int j=i+1; j<n; j++) {
-			}
+			int v = pint(flds[i]);
+			idx[v-1] = i;
 		}
-		for (int y=0; y<h; y++) {
-			for (int x=0; x<w; x++) {
-			}
+		TreeSet<Integer> set = new TreeSet<>();
+		set.add(-1);
+		set.add(n);
+		long sum = 0;
+		for (int i=0; i<n; i++) {
+			int p = idx[i];
+			int l = set.lower(p);
+			int h = set.higher(p);
+			sum += (long)(i+1) * (p-l) * (h-p);
+			set.add(p);
+			//pln("p="+p+",l="+l+",h="+h);
 		}
-		for (int i=0; i<line.length(); i++) {
-			char ch = line.charAt(i);
-		}
+		pln(sum);
 	}
 
 	class RMQ {
@@ -78,7 +56,6 @@ public class Main {
 			}
 		}
 		public int query(int a, int b) {
-			if (a == b) return element[a+n-1];
 			return query(a, b+1, 0, 0, n);
 		}
 		private int query(int a, int b, int k, int l, int r) {
@@ -128,18 +105,17 @@ public class Main {
 			}
 		}
 		public int[] query(int a, int b) {
-			if (a == b) return new int[] { element[a+n-1], index[a+n-1] };
 			return query(a, b+1, 0, 0, n);
 		}
 		private int[] query(int a, int b, int k, int l, int r) {
-			if (r <= a || b <= l) return new int[] { _intMax, 0 };
-			if (a <= l && r <= b) return new int[] { element[k], index[k] };
+			if (r <= a || b <= l) return new int[]{ _intMax, 0 };
+			if (a <= l && r <= b) return new int[]{ element[k], index[k] };
 			int[] vl = query(a, b, 2*k+1, l, (l+r)/2);
 			int[] vr = query(a, b, 2*k+2, (l+r)/2, r);
 			if (vl[0] <= vr[0]) {
-				return new int[] { vl[0], vl[1] };
+				return new int[]{ vl[0], vl[1] };
 			} else {
-				return new int[] { vr[0], vr[1] };
+				return new int[]{ vr[0], vr[1] };
 			}
 		}
 		public void print() {
@@ -356,7 +332,7 @@ public class Main {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Main().solve();
+		new B2().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {

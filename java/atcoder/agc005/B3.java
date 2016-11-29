@@ -1,63 +1,39 @@
-package atcoder;
+package atcoder.agc005;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.math.BigInteger;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
 
-public class Main {
+public class B3 {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final int _intMin = Integer.MIN_VALUE;
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	final long _longMin = Long.MIN_VALUE;
 	static boolean bElapsed = false;
-
+	RMQIndex rmq;
+	
 	void solve() {
-		String line = readLine();
-		String[] flds = readFlds();
 		int n = readNum();
-		int[] ia = readNums();
-		int h = ia[0];
-		int w = ia[1];
-		StringBuilder sb = new StringBuilder(n);
-		List<String> list = new ArrayList<>(n);
-		LinkedList<String> list2 = new LinkedList<>();
-		Set<String> set = new HashSet<>(n);
-		TreeSet<String> set2 = new TreeSet<>();
-		Map<String,String> map = new HashMap<>(n);
-		TreeMap<String,String> map2 = new TreeMap<>();
-		Queue<String> queue = new ArrayDeque<>(n);
-		Deque<String> stack = new ArrayDeque<>(n);
-		RMQ rmq = new RMQ(n);
-		RMQIndex rmq2 = new RMQIndex(n);
-		UnionFind uf = new UnionFind(n);
-		BigInteger bn = BigInteger.valueOf(n);
+		rmq = new RMQIndex(n);
+		String[] flds = readFlds();
 		for (int i=0; i<n; i++) {
-			for (int j=i+1; j<n; j++) {
-			}
+			int v = pint(flds[i]);
+			rmq.update(i, v);
+			//rmq.print();
 		}
-		for (int y=0; y<h; y++) {
-			for (int x=0; x<w; x++) {
-			}
-		}
-		for (int i=0; i<line.length(); i++) {
-			char ch = line.charAt(i);
-		}
+		long sum = dfs(0, n-1);
+		pln(sum);
+	}
+	long dfs(int l, int r) {
+		if (l > r) return 0;
+		int[] v = rmq.query(l, r);
+		long sum = (long)v[0] * (v[1]-l+1) * (r-v[1]+1);
+		sum += dfs(l, v[1]-1);
+		sum += dfs(v[1]+1, r);
+		return sum;
 	}
 
 	class RMQ {
@@ -356,7 +332,7 @@ public class Main {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Main().solve();
+		new B3().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {
