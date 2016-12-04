@@ -14,12 +14,18 @@ public class Q1 {
 
 	void solve() {
 		String[] flds = readFlds();
+		/*
 		String s1 = String.format("%-19s", flds[0]);
 		String s2 = String.format("%19s", flds[1]);
 		String s3 = String.format("%09d", pint(flds[2]));
 		String s4 = String.format("%9d", pint(flds[3]));
 		String s5 = String.format("%9.3f", Double.parseDouble(flds[4]));
 		pln(s1+" "+s2+" "+s3+" "+s4+" "+s5);
+		*/
+		String s = String.format("%-19s %19s %09d %9d %9.3f",
+				flds[0], flds[1], pint(flds[2]),
+				pint(flds[3]), Double.parseDouble(flds[4]));
+		pln(s);
 	}
 
 	long ceil2pow(long n) {

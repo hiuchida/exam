@@ -5,71 +5,68 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class Q2 {
+public class Q4b {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final int _intMin = Integer.MIN_VALUE;
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	final long _longMin = Long.MIN_VALUE;
 	static boolean bElapsed = false;
+	List<String> list1 = new ArrayList<>();
+	//List<String> list2 = new ArrayList<>();
 
 	void solve() {
-		String[] flds = readFlds();
-		List<Info> list = new ArrayList<>();
-		for (int i=0; i<flds.length; i++) {
-			int v = parse(flds[i]);
-			Info info = new Info(flds[i], v);
-			list.add(info);
+		int n = readNum();
+		for (int i=0; i<n; i++) {
+			list1.add(readLine());
 		}
-		Collections.sort(list);
-		for (int i=0; i<list.size(); i++) {
-			if (i != 0) {
-				p(" ");
+		int m = readNum();
+		//for (int i=0; i<m; i++) {
+		//	list2.add(readLine());
+		//}
+		for (int i=0; i<m; i++) {
+			//String key = list2.get(i);
+			String key = readLine();
+			if (key == null || key.length() == 0) {
+				pln("Not match");
+				continue;
 			}
-			p(list.get(i).str);
-		}
-		pln("");
-		/*
-		for (int i=0; i<list.size(); i++) {
-			if (i != 0) {
-				p(" ");
+			int type = 0;
+			if (key.startsWith("%")) {
+				type++;
+				key = key.substring(1);
 			}
-			p(list.get(i).val);
+			if (key.endsWith("%")) {
+				type += 2;
+				key = key.substring(0, key.length()-1);
+			}
+			boolean bFirst = true;
+			boolean bFind = false;
+			for (int j=0; j<n; j++) {
+				if (srch(type, list1.get(j), key)) {
+					if (!bFirst) p(" ");
+					p(j+1);
+					bFirst = false;
+					bFind = true;
+				}
+			}
+			if (!bFind) pln("Not match");
+			else pln("");
 		}
-		pln("");
-		*/
 	}
-	int parse(String s) {
-		int v;
-		if (s.startsWith("0x")) {
-			s = s.substring(2);
-			v = Integer.parseInt(s, 16);
-		} else {
-			v = pint(s);
+	boolean srch(int type, String s1, String s2) {
+		switch (type) {
+		case 0:
+			return s1.equals(s2);
+		case 1:
+			return s1.endsWith(s2);
+		case 2:
+			return s1.startsWith(s2);
+		case 3:
+			return s1.indexOf(s2) >= 0;
 		}
-		return (short)v;
-	}
-	class Info implements Comparable<Info> {
-		String str;
-		int val;
-		public Info(String str, int val) {
-			this.str = str;
-			this.val = val;
-		}
-		public int compareTo(Info o) {
-			if (val < o.val) return -1;
-			else if (val > o.val) return 1;
-			return 0;
-		}
-		public boolean equals(Object o) {
-			if (o instanceof Info) {
-				Info that = (Info)o;
-				return 0 == compareTo(that);
-			}
-			return false;
-		}
+		return false;
 	}
 
 	long ceil2pow(long n) {
@@ -164,7 +161,7 @@ public class Q2 {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Q2().solve();
+		new Q4b().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {

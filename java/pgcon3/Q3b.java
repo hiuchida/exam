@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Q2 {
+public class Q3b {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final int _intMin = Integer.MIN_VALUE;
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
@@ -16,59 +16,34 @@ public class Q2 {
 	static boolean bElapsed = false;
 
 	void solve() {
-		String[] flds = readFlds();
-		List<Info> list = new ArrayList<>();
-		for (int i=0; i<flds.length; i++) {
-			int v = parse(flds[i]);
-			Info info = new Info(flds[i], v);
-			list.add(info);
+		String line = readLine();
+		int k = line.length();
+		int s = readNum();
+		long n = plong(readLine());
+		int m = readNum();
+		List<Character> list = new ArrayList<>();
+		for (int i=0; i<k; i++) {
+			char ch = line.charAt(i);
+			list.add(ch);
 		}
 		Collections.sort(list);
-		for (int i=0; i<list.size(); i++) {
-			if (i != 0) {
-				p(" ");
+		long[] tbl = new long[s];
+		long p = 1;
+		for (int i=0; i<s; i++) {
+			tbl[i] = p;
+			if (p < _longMax) {
+				p *= k;
+				if (p < tbl[i]) p = _longMax;
 			}
-			p(list.get(i).str);
 		}
-		pln("");
-		/*
-		for (int i=0; i<list.size(); i++) {
-			if (i != 0) {
-				p(" ");
+		n--;
+		for (int i=0; i<m; i++) {
+			for (int j=s-1; j>=0; j--) {
+				int idx = (int)(n / tbl[j] % k);
+				p(list.get(idx));
 			}
-			p(list.get(i).val);
-		}
-		pln("");
-		*/
-	}
-	int parse(String s) {
-		int v;
-		if (s.startsWith("0x")) {
-			s = s.substring(2);
-			v = Integer.parseInt(s, 16);
-		} else {
-			v = pint(s);
-		}
-		return (short)v;
-	}
-	class Info implements Comparable<Info> {
-		String str;
-		int val;
-		public Info(String str, int val) {
-			this.str = str;
-			this.val = val;
-		}
-		public int compareTo(Info o) {
-			if (val < o.val) return -1;
-			else if (val > o.val) return 1;
-			return 0;
-		}
-		public boolean equals(Object o) {
-			if (o instanceof Info) {
-				Info that = (Info)o;
-				return 0 == compareTo(that);
-			}
-			return false;
+			pln("");
+			n++;
 		}
 	}
 
@@ -164,7 +139,7 @@ public class Q2 {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Q2().solve();
+		new Q3b().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {

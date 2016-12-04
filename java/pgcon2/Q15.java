@@ -13,14 +13,16 @@ import java.util.Set;
 public class Q15 {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
-	static boolean bElapsed = false;
+	static boolean bElapsed = true;
 	final int[] dx = { 1, 0, -1, 0 };
 	final int[] dy = { 0, 1, 0, -1 };
 
 	void solve() {
+		
 		int n = readNum();
 		long sum = calc(n);
 		pln(sum);
+		
 /*
 1
 1+4
@@ -40,20 +42,48 @@ public class Q15 {
 		int n = readNum();
 		Set<Point> set = new HashSet<>();
 		set.add(new Point(0, 0));
+		Queue<Point> queue = new ArrayDeque<>();
+		queue.offer(new Point(0, 0));
 		for (int i=0; i<n; i++) {
-			Queue<Point> queue = new ArrayDeque<>();
-			queue.addAll(set);
+			Queue<Point> newQueue = new ArrayDeque<>();
 			while (queue.size() > 0) {
 				Point pt = queue.poll();
 				for (int d=0; d<dx.length; d++) {
 					Point npt = new Point(pt.x+dx[d], pt.y+dy[d]);
 					if (!set.contains(npt)) {
 						set.add(npt);
+						newQueue.offer(npt);
 					}
 				}
 			}
+			queue = newQueue;
 		}
 		pln(set.size());
+		*/
+		/*
+		int n = readNum();
+		int cnt = 0;
+		byte[][] map = new byte[2*n+1][2*n+1];
+		map[n][n] = 1;
+		cnt++;
+		Queue<Point> queue = new ArrayDeque<>();
+		queue.offer(new Point(0, 0));
+		for (int i=0; i<n; i++) {
+			Queue<Point> newQueue = new ArrayDeque<>();
+			while (queue.size() > 0) {
+				Point pt = queue.poll();
+				for (int d=0; d<dx.length; d++) {
+					Point npt = new Point(pt.x+dx[d], pt.y+dy[d]);
+					if (map[n+npt.y][n+npt.x] == 0) {
+						map[n+npt.y][n+npt.x] = 1;
+						cnt++;
+						newQueue.offer(npt);
+					}
+				}
+			}
+			queue = newQueue;
+		}
+		pln(cnt);
 		*/
 	}
 	

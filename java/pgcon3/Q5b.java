@@ -4,72 +4,86 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
-public class Q2 {
+public class Q5b {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final int _intMin = Integer.MIN_VALUE;
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	final long _longMin = Long.MIN_VALUE;
 	static boolean bElapsed = false;
+	int n;
+	int[] price = new int[4];
+	int[] num = { 20, 9, 6, 4 };
+	int[] buy = new int[4];
+	long answerP = _longMax;
+	int[] answerBuy = new int[4];
+	long funcCnt;
 
 	void solve() {
-		String[] flds = readFlds();
-		List<Info> list = new ArrayList<>();
-		for (int i=0; i<flds.length; i++) {
-			int v = parse(flds[i]);
-			Info info = new Info(flds[i], v);
-			list.add(info);
+		int[] ia = readNums();
+		n = ia[0];
+		for (int i=0; i<4; i++) {
+			price[i] = ia[i+1];
 		}
-		Collections.sort(list);
-		for (int i=0; i<list.size(); i++) {
-			if (i != 0) {
-				p(" ");
-			}
-			p(list.get(i).str);
+		dfs(0, n, 0);
+		//pln(answerP);
+		for (int i=0; i<answerBuy.length; i++) {
+			if (i != 0) p(" ");
+			p(answerBuy[i]);
 		}
 		pln("");
+		//pln(funcCnt);
+	}
+	void dfs(int i, int n, long p) {
+		if (answerP < p) return;
+		//pln(i+" "+n+" "+p);
+		funcCnt++;
 		/*
-		for (int i=0; i<list.size(); i++) {
-			if (i != 0) {
-				p(" ");
+		if (i == 4) {
+			if (n == 0) {
+				if (answerP > p) {
+					answerP = p;
+					System.arraycopy(buy, 0, answerBuy, 0, 4);
+				} else if (answerP == p && check()) {
+					System.arraycopy(buy, 0, answerBuy, 0, 4);
+				}
 			}
-			p(list.get(i).val);
+			return;
 		}
-		pln("");
 		*/
-	}
-	int parse(String s) {
-		int v;
-		if (s.startsWith("0x")) {
-			s = s.substring(2);
-			v = Integer.parseInt(s, 16);
-		} else {
-			v = pint(s);
-		}
-		return (short)v;
-	}
-	class Info implements Comparable<Info> {
-		String str;
-		int val;
-		public Info(String str, int val) {
-			this.str = str;
-			this.val = val;
-		}
-		public int compareTo(Info o) {
-			if (val < o.val) return -1;
-			else if (val > o.val) return 1;
-			return 0;
-		}
-		public boolean equals(Object o) {
-			if (o instanceof Info) {
-				Info that = (Info)o;
-				return 0 == compareTo(that);
+		if (i == 3) {
+			buy[i] = n / num[i];
+			n -= num[i] * buy[i];
+			p += price[i] * buy[i];
+			if (n == 0) {
+				if (answerP > p) {
+					answerP = p;
+					System.arraycopy(buy, 0, answerBuy, 0, 4);
+				} else if (answerP == p && check()) {
+					System.arraycopy(buy, 0, answerBuy, 0, 4);
+				}
 			}
-			return false;
+			return;
 		}
+		for (int j=n / num[i]; j >= 0; j--) {
+		//for (int j=0; j <= n / num[i]; j++) {
+			buy[i] = j;
+			int nn = n - num[i] * j;
+			long np = p + price[i] * j;
+			dfs(i+1, nn, np);
+		}
+		return;
+	}
+	boolean check() {
+		int cnt = 0;
+		for (int i : buy) {
+			cnt += i;
+		}
+		int ansCnt = 0;
+		for (int i : answerBuy) {
+			ansCnt += i;
+		}
+		return cnt < ansCnt;
 	}
 
 	long ceil2pow(long n) {
@@ -164,7 +178,7 @@ public class Q2 {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Q2().solve();
+		new Q5b().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {
