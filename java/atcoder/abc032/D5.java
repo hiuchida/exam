@@ -5,24 +5,26 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class D2 {
+public class D5 {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
 	static boolean bElapsed = false;
 	List<Point> list = new ArrayList<>();
 	Map<Point,Long> map = new HashMap<>();
+	long[] dp;
 	int n;
 	int w;
 
 	long dfs(int i, int w) {
-		if (i >= n) return 0;
 		Point key = new Point(i, w);
 		Long v = map.get(key);
 		if (v != null) return v;
+		if (i >= n) return 0;
 		Point pt = list.get(i);
 		long r1 = dfs(i+1, w);
 		if (w < pt.y) {
@@ -34,16 +36,48 @@ public class D2 {
 		map.put(key, r);
 		return r;
 	}
+	long solve2() {
+		int v = 1000;
+		dp = new long[n*v+1];
+		for (int i=0; i<n; i++) {
+			Point pt = list.get(i);
+			for (int j=n*v; j>=pt.y; j--) {
+				dp[j] = Math.max(dp[j], dp[j-pt.y]+pt.x);
+			}
+		}
+		return dp[w];
+	}
+	long solve3() {
+		int v = 1000;
+		dp = new long[n*v+1];
+		Arrays.fill(dp, _intMax);
+		dp[0] = 0;
+		for (int i=0; i<n; i++) {
+			Point pt = list.get(i);
+			for (int j=n*v; j>=pt.x; j--) {
+				dp[j] = Math.min(dp[j], dp[j-pt.x]+pt.y);
+			}
+		}
+		for (int i=n*v; i>=0; i--) {
+			if (dp[i] <= w) return i;
+		}
+		return 0;
+	}
 	void solve() {
 		int[] ia = readNums();
 		n = ia[0];
 		w = ia[1];
+		boolean bOverW = false;
 		for (int i=0; i<n; i++) {
 			ia = readNums();
 			Point pt = new Point(ia[0], ia[1]);
 			list.add(pt);
+			if (pt.y > 1000) bOverW = true;
 		}
-		long ans = dfs(0, w);
+		long ans;
+		if (n <= 30) ans = dfs(0, w);
+		else if (!bOverW) ans = solve2();
+		else ans = solve3();
 		pln(ans);
 	}
 
@@ -164,7 +198,7 @@ public class D2 {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new D2().solve();
+		new D5().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {

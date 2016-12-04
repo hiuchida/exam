@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class D {
@@ -16,6 +15,14 @@ public class D {
 	int n;
 	int w;
 
+	long dfs(int i, int w) {
+		if (i >= n) return 0;
+		Point pt = list.get(i);
+		long r1 = dfs(i+1, w);
+		if (w < pt.y) return r1;
+		long r2 = dfs(i+1, w-pt.y)+pt.x;
+		return Math.max(r1, r2);
+	}
 	void solve() {
 		int[] ia = readNums();
 		n = ia[0];
@@ -28,69 +35,7 @@ public class D {
 		long ans = dfs(0, w);
 		pln(ans);
 	}
-	long dfs(int i, int w) {
-		if (i >= n) return 0;
-		Point pt = list.get(i);
-		if (w < pt.y) return dfs(i+1, w);
-		long r1 = dfs(i+1, w);
-		long r2 = dfs(i+1, w-pt.y)+pt.x;
-		return Math.max(r1, r2);
-	}
-
-	class UnionFind {
-		int[] uf;
-		public UnionFind(int n) {
-			uf = new int[n];
-			for (int i=0; i<n; i++) {
-				uf[i] = i;
-			}
-		}
-		public int root(int v) {
-			if (uf[v] == v) return v;
-			uf[v] = root(uf[v]);
-			return uf[v];
-		}
-		public void merge(int u, int v) {
-			u = root(u);
-			v = root(v);
-			if (u == v) return;
-			uf[v] = u;
-		}
-		public boolean same(int u, int v) {
-			return root(u) == root(v);
-		}
-		public void print() {
-			for (int i=0; i<uf.length; i++) {
-				p(uf[i]+" ");
-			}
-			pln("");
-		}
-	}
-	class Pair {
-		String a;
-		String b;
-		public Pair(String a, String b) {
-			this.a = a;
-			this.b = b;
-		}
-		public Pair(Pair pr) {
-			this.a = pr.a;
-			this.b = pr.b;
-		}
-		public boolean equals(Object o) {
-			if (o instanceof Pair) {
-				Pair that = (Pair)o;
-				return (a.equals(that.a)) && (b.equals(that.b));
-			}
-			return false;
-		}
-		public int hashCode() {
-			return a.hashCode() + (b.hashCode() << 16);
-		}
-		public String toString() {
-			return "(" + a + ", " + b + ")";
-		}
-	}
+	
 	class Point {
 		int x;
 		int y;
@@ -114,35 +59,6 @@ public class D {
 		}
 		public String toString() {
 			return "(" + x + ", " + y + ")";
-		}
-	}
-	class Info implements Comparable<Info> {
-		int idx;
-		int val;
-		public Info(int idx, int val) {
-			this.idx = idx;
-			this.val = val;
-		}
-		public int compareTo(Info o) {
-			return idx - o.idx;
-		}
-		public boolean equals(Object o) {
-			if (o instanceof Info) {
-				Info that = (Info)o;
-				return 0 == compareTo(that);
-			}
-			return false;
-		}
-		public int hashCode() {
-			return idx + (val << 16);
-		}
-		public String toString() {
-			return "(" + idx + ", " + val + ")";
-		}
-	}
-	class InfoComp implements Comparator<Info> {
-		public int compare(Info o1, Info o2) {
-			return o1.val - o2.val;
 		}
 	}
 	long ceil2pow(long n) {

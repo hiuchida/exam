@@ -1,26 +1,15 @@
-package atcoder;
+package atcoder.abc048;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.math.BigInteger;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
 
-public class Main {
+public class D {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final int _intMin = Integer.MIN_VALUE;
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
@@ -29,35 +18,33 @@ public class Main {
 
 	void solve() {
 		String line = readLine();
-		String[] flds = readFlds();
-		int n = readNum();
-		int[] ia = readNums();
-		int h = ia[0];
-		int w = ia[1];
-		StringBuilder sb = new StringBuilder(n);
-		List<String> list = new ArrayList<>(n);
-		LinkedList<String> list2 = new LinkedList<>();
-		Set<String> set = new HashSet<>(n);
-		TreeSet<String> set2 = new TreeSet<>();
-		Map<String,String> map = new HashMap<>(n);
-		TreeMap<String,String> map2 = new TreeMap<>();
-		Queue<String> queue = new ArrayDeque<>(n);
-		Deque<String> stack = new ArrayDeque<>(n);
-		RMQ rmq = new RMQ(n);
-		RMQIndex rmq2 = new RMQIndex(n);
-		UnionFind uf = new UnionFind(n);
-		BigInteger bn = BigInteger.valueOf(n);
-		for (int i=0; i<n; i++) {
-			for (int j=i+1; j<n; j++) {
+		//List<Character> list = new ArrayList<>();
+		//for (int i=0; i<line.length(); i++) {
+		//	list.add(line.charAt(i));
+		//}
+		StringBuilder sb = new StringBuilder();
+		sb.append(line);
+		int cnt = 0;
+		for (int i=0; i+2<sb.length(); i++) {
+		//for (int i=0; i+2<list.size(); i++) {
+		//for (int i=0; i+2<line.length(); i++) {
+			//pln(i+" "+line);
+			char ch = sb.charAt(i);
+			char ch2 = sb.charAt(i+2);
+			//char ch = list.get(i);
+			//char ch2 = list.get(i+2);
+			//char ch = line.charAt(i);
+			//char ch2 = line.charAt(i+2);
+			if (ch != ch2) {
+				//pln(i+" "+line);
+				sb.deleteCharAt(i+1);
+				//list.remove(i+1);
+				//line = line.substring(0, i+1) + line.substring(i+2);
+				cnt++;
+				i = Math.max(-1, i-2);
 			}
 		}
-		for (int y=0; y<h; y++) {
-			for (int x=0; x<w; x++) {
-			}
-		}
-		for (int i=0; i<line.length(); i++) {
-			char ch = line.charAt(i);
-		}
+		pln(cnt%2==1 ? "First" : "Second");
 	}
 
 	class RMQ {
@@ -360,7 +347,7 @@ public class Main {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Main().solve();
+		new D().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {
