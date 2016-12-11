@@ -1,26 +1,13 @@
-package atcoder;
+package atcoder.abc049;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.math.BigInteger;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
 
-public class Main {
+public class A {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final int _intMin = Integer.MIN_VALUE;
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
@@ -28,57 +15,15 @@ public class Main {
 	static boolean bElapsed = false;
 
 	void solve() {
+		String s = "aiueo";
 		String line = readLine();
-		String[] flds = readFlds();
-		int n = readNum();
-		int[] ia = readNums();
-		int h = ia[0];
-		int w = ia[1];
-		StringBuilder sb = new StringBuilder(n);
-		List<String> list = new ArrayList<>(n);
-		LinkedList<String> list2 = new LinkedList<>();
-		Set<String> set = new HashSet<>(n);
-		TreeSet<String> set2 = new TreeSet<>();
-		Map<String,String> map = new HashMap<>(n);
-		TreeMap<String,String> map2 = new TreeMap<>();
-		Queue<String> queue = new ArrayDeque<>(n);
-		Deque<String> stack = new ArrayDeque<>(n);
-		RMQ rmq = new RMQ(n);
-		RMQIndex rmq2 = new RMQIndex(n);
-		UnionFind uf = new UnionFind(n);
-		BigInteger bn = BigInteger.valueOf(n);
-		for (int i=0; i<n; i++) {
-			for (int j=i+1; j<n; j++) {
-			}
-		}
-		for (int y=0; y<h; y++) {
-			for (int x=0; x<w; x++) {
-			}
-		}
-		for (int i=0; i<line.length(); i++) {
-			char ch = line.charAt(i);
+		if (s.indexOf(line.charAt(0)) >= 0) {
+			pln("vowel");
+		} else {
+			pln("consonant");
 		}
 	}
 
-	class Counter {
-		Map<Object,Integer> map = new HashMap<>();
-		void add(Object o) {
-			Integer v = map.get(o);
-			if (v == null) {
-				map.put(o, 1);
-			} else {
-				map.put(o, v+1);
-			}
-		}
-		int get(Object o) {
-			Integer v = map.get(o);
-			if (v == null) {
-				return 0;
-			} else {
-				return v;
-			}
-		}
-	}
 	class RMQ {
 		int n;
 		int[] element;
@@ -379,7 +324,7 @@ public class Main {
 		long start = System.currentTimeMillis();
 		_in = new BufferedReader(new InputStreamReader(System.in));
 		_out = new PrintWriter(System.out);
-		new Main().solve();
+		new A().solve();
 		_out.flush();
 		long end = System.currentTimeMillis();
 		if (bElapsed) {
