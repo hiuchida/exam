@@ -1,0 +1,74 @@
+6
+2+4
+4+2
+6
+
+01000001
+01011010
+01100001
+01111010
+
+01aabb
+cc0101
+cc0101
+01aabb
+
+01aabbcc
+0101cc01
+0101aabb
+
+01aabb
+cc0101
+dd0101
+01eeff
+01eeff
+dd0101
+cc0101
+01aabb
+
+01aabbcc
+0101dd01
+0101eeff
+01eeffdd
+0101cc01
+0101aabb
+
+ABBA 3
+ABCD DCBA 6
+ABCD EFFE DCBA 9
+ABCD EFGH HGFE DCBA 12
+ABCD EFGH IJJI HGFE DCBA 15
+
+01aabb
+cc0101
+dd0101
+01eeff
+01gghh
+ii0101
+ii0101
+01gghh
+01eeff
+dd0101
+cc0101
+01aabb
+
+01aabb QRSTUVWYZa 10
+cc0101 FVl 3
+
+1
+0ms
+
+2
+0ms
+
+127
+46ms
+
+1536
+438ms
+
+52500
+8023ms
+
+52500
+6882ms

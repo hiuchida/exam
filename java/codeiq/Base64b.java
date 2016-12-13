@@ -7,6 +7,18 @@ import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+問題文「第118回 今週のお題：Base64で反転」
+
+A-Zとa-zの52文字から構成される、長さが 3n の文字列があります。
+これをASCIIコードからBase64にエンコードし、左右反転します。
+さらにBase64からデコードしたときに、元の文字列と同じになるもののうち、元の文字列に含まれる文字が n 種類のものがいくつあるかを出力してください。
+例えば、n = 1 のとき、「TQU」という文字列はエンコードすると「VFFV」となり、左右反転してデコードすると「TQU」に戻ります。
+ただ、この場合は「T」「Q」「U」という3種類の文字を使用しています。
+同様に、「DQQ」「fYY」は2種類の文字を使用しています。
+n = 1 のときは「UUU」の1つだけですので、1を出力します。
+なお、n は5以下の整数とします。
+ */
 public class Base64b {
 	final int _intMax = Integer.MAX_VALUE; //=2147483647>10^9
 	final long _longMax = Long.MAX_VALUE; //=9223372036854775807L>10^18
