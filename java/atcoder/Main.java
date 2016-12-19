@@ -287,6 +287,21 @@ public class Main {
 			return 0;
 		}
 	}
+	long combination(long n, long m) {
+		if (m == 0 || n == m) return 1;
+		if (n - m < m) m = n - m;
+		long ans = 1;
+		long nn = n;
+		for (int i=0; i<m; i++) {
+			ans *= nn;
+			nn--;
+		}
+		return ans / factorial(m);
+	}
+	long factorial(long n) {
+		if (n == 0) return 1;
+		return n * factorial(n-1);
+	}
 	long ceil2pow(long n) {
 		if (n == 0) return 1;
 		n--;
