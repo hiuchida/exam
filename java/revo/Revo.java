@@ -11,6 +11,8 @@ import java.util.Map;
 
 public class Revo {
 	static boolean bElapsed = true;
+	static int min = 30000;
+	static int max = 30000;
 
 	static List<Integer> mstList = new ArrayList<>();
 	static List<Integer> tmpList = new ArrayList<>();
@@ -34,7 +36,7 @@ public class Revo {
 	static int dfs(int i, int v) {
 		if (i >= mstList.size())
 			return v;
-		if (v == 30000) {
+		if (min <= v && v <= max) {
 			print();
 			System.exit(0);
 		}
