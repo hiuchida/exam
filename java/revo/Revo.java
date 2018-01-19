@@ -54,7 +54,7 @@ public class Revo {
 			System.out.println(map.get(v) + " " + v);
 			sum += v;
 		}
-		System.out.println("合計 " + sum);
+		System.out.println("合計:" + sum);
 	}
 
 	public static void main(String[] args) throws IOException {
